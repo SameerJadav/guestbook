@@ -10,8 +10,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Example {
+model Post {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    content   String
+    authorId  String
+    @@index([authorId])
 }
