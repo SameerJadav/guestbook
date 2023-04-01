@@ -6,10 +6,12 @@ import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 
 import PostWizard from "~/components/PostWizard";
+import LoadingSpinner from "~/components/LoadigSpinner";
 
 // Fetching data from the tRPC API
 type postWithUser = RouterOutputs["post"]["getAll"][number];
 
+// Individual post view
 const PostView = (props: postWithUser) => {
   const { post, author } = props;
   return (
@@ -20,18 +22,31 @@ const PostView = (props: postWithUser) => {
   );
 };
 
+// Feed of posts
+const Feed = () => {
+  const { data, isLoading: postsLoading } = api.post.getAll.useQuery();
+
+  if (postsLoading) return <LoadingSpinner />;
+
+  if (!data) return <div>Something went wrong!</div>;
+
+  return (
+    <div>
+      {data?.map((fullPost) => (
+        <PostView {...fullPost} key={fullPost.post.id} />
+      ))}
+    </div>
+  );
+};
+
 const Home: NextPage = () => {
-  const user = useUser();
+  const { isSignedIn, isLoaded: userLoaded } = useUser();
 
-  const { data, isLoading } = api.post.getAll.useQuery();
+  // Start fetching ASAP
+  api.post.getAll.useQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!data) {
-    return <div>Something went wrong!</div>;
-  }
+  // User will be loaded fast so don't show a loading spinner
+  if (!userLoaded) return <div />;
 
   return (
     <>
@@ -48,14 +63,12 @@ const Home: NextPage = () => {
 
         <div className="mb-4 border-b border-dashed border-zinc-400 py-4 text-xl text-white">
           {/* User is not signed in */}
-          {!user.isSignedIn && <SignInButton mode="modal" />}
+          {!isSignedIn && <SignInButton mode="modal" />}
           {/* User is signed in */}
-          {user.isSignedIn && <PostWizard />}
+          {isSignedIn && <PostWizard />}
         </div>
 
-        {data?.map((fullPost) => (
-          <PostView {...fullPost} key={fullPost.post.id} />
-        ))}
+        <Feed />
       </main>
     </>
   );
