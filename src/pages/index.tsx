@@ -18,7 +18,15 @@ const CreatePostWizard = () => {
 
   const [input, setInput] = useState("");
 
-  const { mutate } = api.post.create.useMutation();
+  const ctx = api.useContext();
+
+  const { mutate, isLoading: isPosting } = api.post.create.useMutation({
+    // Clear the input field and invalidate the cache when the mutation is done
+    onSuccess: () => {
+      setInput("");
+      void ctx.post.getAll.invalidate();
+    },
+  });
 
   console.log(user);
 
@@ -35,6 +43,7 @@ const CreatePostWizard = () => {
           id="message"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          disabled={isPosting}
           placeholder="Leave a message"
           className="w-full bg-transparent outline-none placeholder:text-zinc-400"
         />
