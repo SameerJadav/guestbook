@@ -8,6 +8,8 @@ import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 
 import LoadingSpinner from "~/components/LoadigSpinner";
+import { toast } from "react-hot-toast";
+import clsx from "clsx";
 
 // Fetching data from the tRPC API
 type postWithUser = RouterOutputs["post"]["getAll"][number];
@@ -26,6 +28,9 @@ const CreatePostWizard = () => {
       setInput("");
       void ctx.post.getAll.invalidate();
     },
+    onError: () => {
+      toast.error("Failed to post! Try again later.");
+    },
   });
 
   console.log(user);
@@ -43,16 +48,27 @@ const CreatePostWizard = () => {
           id="message"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              if (input !== "") mutate({ content: input });
+            }
+          }}
           disabled={isPosting}
           placeholder="Leave a message"
           className="w-full bg-transparent outline-none placeholder:text-zinc-400"
         />
-        <button
-          onClick={() => mutate({ content: input })}
-          className="rounded-md bg-zinc-700 px-2"
-        >
-          Post
-        </button>
+        {input !== "" && (
+          <button
+            onClick={() => mutate({ content: input })}
+            className={clsx("rounded-md bg-zinc-700 px-2", {
+              "cursor-not-allowed bg-zinc-500": isPosting,
+            })}
+            disabled={isPosting}
+          >
+            Post
+          </button>
+        )}
       </div>
       <div className="flex w-max items-center gap-1 text-base">
         <SignOutButton>⇒ Sign out</SignOutButton>

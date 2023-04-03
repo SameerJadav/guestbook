@@ -20,9 +20,11 @@
     "@upstash/ratelimit": "^0.4.1",
     "@upstash/redis": "^1.20.2",
     "@vercel/analytics": "^0.1.11",
+    "clsx": "^1.2.1",
     "next": "^13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
   },
