@@ -1,15 +1,56 @@
+import { useState } from "react";
+
 import { type NextPage } from "next";
 import Head from "next/head";
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser, SignOutButton } from "@clerk/nextjs";
 
 import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 
-import PostWizard from "~/components/PostWizard";
 import LoadingSpinner from "~/components/LoadigSpinner";
 
 // Fetching data from the tRPC API
 type postWithUser = RouterOutputs["post"]["getAll"][number];
+
+// Create post wizard
+const CreatePostWizard = () => {
+  const { user } = useUser();
+
+  const [input, setInput] = useState("");
+
+  const { mutate } = api.post.create.useMutation();
+
+  console.log(user);
+
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <div className="flex w-full flex-col gap-1 text-start">
+      <div className="mb-2 flex items-center gap-2 rounded-md bg-zinc-900 p-1.5">
+        <input
+          type="text"
+          name="message"
+          id="message"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Leave a message"
+          className="w-full bg-transparent outline-none placeholder:text-zinc-400"
+        />
+        <button
+          onClick={() => mutate({ content: input })}
+          className="rounded-md bg-zinc-700 px-2"
+        >
+          Post
+        </button>
+      </div>
+      <div className="flex w-max items-center gap-1 text-base">
+        <SignOutButton>⇒ Sign out</SignOutButton>
+      </div>
+    </div>
+  );
+};
 
 // Individual post view
 const PostView = (props: postWithUser) => {
@@ -60,14 +101,12 @@ const Home: NextPage = () => {
         <h1 className="mb-4 text-center font-serif text-4xl font-bold text-white md:mb-6 md:text-5xl">
           Guestbook
         </h1>
-
         <div className="mb-4 border-b border-dashed border-zinc-400 py-4 text-xl text-white">
           {/* User is not signed in */}
           {!isSignedIn && <SignInButton mode="modal" />}
           {/* User is signed in */}
-          {isSignedIn && <PostWizard />}
+          {isSignedIn && <CreatePostWizard />}
         </div>
-
         <Feed />
       </main>
     </>
