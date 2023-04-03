@@ -14,7 +14,8 @@ import {
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
-    userName: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
   };
 };
 
@@ -40,7 +41,7 @@ export const postsRouter = createTRPCRouter({
       })
     ).map(filterUserForClient);
 
-    // console.log(users);
+    console.log(users);
 
     return posts.map((post) => {
       const author = users.find((user) => user.id === post.authorId);

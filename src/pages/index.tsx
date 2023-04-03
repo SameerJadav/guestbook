@@ -82,7 +82,9 @@ const PostView = (props: postWithUser) => {
   const { post, author } = props;
   return (
     <div key={post.id} className="mb-1 flex gap-1 text-lg">
-      <p className="text-zinc-300">{author.userName}:</p>
+      <p className="text-zinc-300">
+        {author.firstName} {author.lastName}:
+      </p>
       <p>{post.content}</p>
     </div>
   );
