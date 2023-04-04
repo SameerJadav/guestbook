@@ -5,3 +5,18 @@
 body {
   @apply flex justify-center bg-black text-neutral-100;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 0.375em;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-700;
+  border-radius: 0.25em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
