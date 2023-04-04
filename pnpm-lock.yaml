@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@clerk/nextjs': ^4.14.0
+  '@clerk/themes': ^1.5.1
   '@prisma/client': ^4.12.0
   '@tanstack/react-query': ^4.28.0
   '@trpc/client': ^10.18.0
@@ -37,6 +38,7 @@ specifiers:
 
 dependencies:
   '@clerk/nextjs': 4.14.0_ld2jel3hspngo3u5lti2kgl2sq
+  '@clerk/themes': 1.5.1_react@18.2.0
   '@prisma/client': 4.12.0_prisma@4.12.0
   '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.18.0_@trpc+server@10.18.0
@@ -142,6 +144,15 @@ packages:
 
   /@clerk/shared/0.15.1_react@18.2.0:
     resolution: {integrity: sha512-C1Oou0Ksz5pxtJ8cMqx/XT2mVjJksQjV/OmPgvv5koGOuZowZA4yH+gEpwUOb16z7tKQkoRYZ4BO8DebGutkGQ==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@clerk/themes/1.5.1_react@18.2.0:
+    resolution: {integrity: sha512-2tAm4kd2uP+yqu3O4ANkwnAl8Cyfk4BztxbcYx367wXe3EoRrvondBZmudZgBUMXRDd0/EDNrXtVngRvAjnEJQ==}
+    engines: {node: '>=14'}
     peerDependencies:
       react: '>=16'
     dependencies:
