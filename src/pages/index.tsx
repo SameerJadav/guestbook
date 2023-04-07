@@ -162,7 +162,10 @@ const Home: NextPage = () => {
         <meta property="og:site_name" content="Guestbook" />
         <meta property="og:locale" content="en-US" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/og-guestbook.png" />
+        <meta
+          property="og:image"
+          content="https://guestbook.sameerjadav.me/og-guestbook.png"
+        />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="600" />
 
@@ -173,7 +176,10 @@ const Home: NextPage = () => {
           content="Welcome to my guestbook app! Keep memories alive with user-friendly platform. Share experiences and connect with loved ones. Join the fun today!"
         />
         <meta name="twitter:creator" content="@SameerJadav_" />
-        <meta name="twitter:image" content="/og-guestbook.png" />
+        <meta
+          name="twitter:image"
+          content="https://guestbook.sameerjadav.me/og-guestbook.png"
+        />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
