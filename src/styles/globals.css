@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply flex justify-center bg-black text-neutral-100;
+  @apply flex justify-center bg-black text-white;
 }
 
 /* Custom Scrollbar */
