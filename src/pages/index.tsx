@@ -162,9 +162,9 @@ const Home: NextPage = () => {
         <meta property="og:site_name" content="Guestbook" />
         <meta property="og:locale" content="en-US" />
         <meta property="og:type" content="website" />
-        <meta property="og:image:url" content="/og-guestbook.png" />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1080" />
+        <meta property="og:image" content="/og-guestbook.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="600" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Guestbook" />
