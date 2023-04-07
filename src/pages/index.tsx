@@ -3,6 +3,7 @@ import { useState } from "react";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { SignInButton, useUser, SignOutButton } from "@clerk/nextjs";
+import { Kaisei_Opti, Inter } from "next/font/google";
 
 import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
@@ -10,6 +11,17 @@ import type { RouterOutputs } from "~/utils/api";
 import LoadingSpinner from "~/components/LoadigSpinner";
 import { toast } from "react-hot-toast";
 import clsx from "clsx";
+
+const kaisei = Kaisei_Opti({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 // Fetching data from the tRPC API
 type postWithUser = RouterOutputs["post"]["getAll"][number];
@@ -166,8 +178,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen w-screen max-w-2xl px-4 py-10">
-        <h1 className="mb-6 text-center font-serif text-6xl md:text-8xl">
+      <main
+        className={clsx(
+          "min-h-screen w-screen max-w-2xl px-4 py-10",
+          inter.className
+        )}
+      >
+        <h1
+          className={clsx(
+            "mb-6 text-center font-serif text-6xl md:text-8xl",
+            kaisei.className
+          )}
+        >
           Guestbook
         </h1>
         <div className="mb-6 border-b border-dashed border-zinc-400 py-4 text-xl">
