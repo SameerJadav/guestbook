@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { ClerkProvider } from "@clerk/nextjs"
 import { siteConfig } from "~/config/site"
 import { cn } from "~/lib/utils"
 import "./globals.css"
@@ -60,15 +61,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "flex flex-col bg-slate1 text-slate12 antialiased",
-          inter.className
-        )}
-      >
-        <main className="flex-1">{children}</main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={cn(
+            "flex flex-col bg-slate1 text-slate12 antialiased",
+            inter.className
+          )}
+        >
+          <main className="flex-1">{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
