@@ -1,11 +1,12 @@
 import { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Noto_Serif_Display } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { siteConfig } from "~/config/site"
 import { cn } from "~/lib/utils"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
+export const noto = Noto_Serif_Display({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
@@ -69,7 +70,9 @@ export default function RootLayout({
             inter.className
           )}
         >
-          <main className="flex-1">{children}</main>
+          <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 md:p-0">
+            {children}
+          </main>
         </body>
       </html>
     </ClerkProvider>
