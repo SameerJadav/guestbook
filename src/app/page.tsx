@@ -1,6 +1,6 @@
-import Heading from "~/components/heading"
-import Nav from "~/components/nav"
-import PostWizard from "~/components/post-wizard"
+import Heading from "~/components/Heading"
+import Nav from "~/components/Nav"
+import PostWizard from "~/components/PostWizard"
 
 export default function Home() {
   return (
