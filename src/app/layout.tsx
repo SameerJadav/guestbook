@@ -70,7 +70,7 @@ export default function RootLayout({
             inter.className
           )}
         >
-          <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-6 md:p-0">
+          <main className="mx-auto w-full max-w-xl flex-1 px-4 py-6 md:p-0">
             {children}
           </main>
         </body>

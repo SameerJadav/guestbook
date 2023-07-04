@@ -7,7 +7,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-slate12 text-slate1 hover:bg-slate2",
+        default: "bg-slate12 text-slate2 hover:text-slate1 hover:bg-slate11",
         destructive: "bg-red9 hover:bg-red10",
         outline: "border border-slate7 hover:bg-slate4 hover:border-slate8",
         secondary:
@@ -17,6 +17,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "py-2 px-4",
+        sm: "py-1 px-2",
       },
     },
     defaultVariants: {
