@@ -19,7 +19,15 @@ module.exports = {
         slate10: "hsl(var(--slate10) / <alpha-value>)",
         slate11: "hsl(var(--slate11) / <alpha-value>)",
         slate12: "hsl(var(--slate12) / <alpha-value>)",
+
+        red9: "hsl(var(--red9) / <alpha-value>)",
+        red10: "hsl(var(--red10) / <alpha-value>)",
       },
+    },
+    borderRadius: {
+      lg: `var(--radius)`,
+      md: `calc(var(--radius) - 2px)`,
+      sm: "calc(var(--radius) - 4px)",
     },
   },
   plugins: [],

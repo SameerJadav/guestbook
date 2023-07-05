@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Inter, Noto_Serif_Display } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
-import { siteConfig } from "~/config/site"
+import { siteConfig } from "~/config"
 import { cn } from "~/lib/utils"
 import "./globals.css"
 
@@ -14,7 +14,16 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Next.js", "TypeScript", "Next.js Template"],
+  keywords: [
+    "Next.js",
+    "TypeScript",
+    "Prisma",
+    "Tailwind CSS",
+    "Clerk",
+    "zod",
+    "Guestbook",
+    "Supabase",
+  ],
   authors: [
     {
       name: siteConfig.author,
@@ -64,13 +73,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={cn(
-            "flex flex-col bg-slate1 text-slate12 antialiased",
-            inter.className
-          )}
-        >
-          <main className="mx-auto w-full max-w-xl flex-1 px-4 py-6 md:p-0">
+        <body className={cn("antialiased", inter.className)}>
+          <main className="mx-auto w-full max-w-xl px-4 py-6 md:p-0">
             {children}
           </main>
         </body>

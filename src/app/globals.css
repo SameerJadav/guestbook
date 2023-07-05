@@ -16,7 +16,16 @@
     --slate10: 206 5.2% 49.5%;
     --slate11: 206 6% 63%;
     --slate12: 210 6% 93%;
+
+    --red9: 358 75% 59%;
+    --red10: 358 69.4% 55.2%;
+
+    --radius: 0.5rem;
   }
+}
+
+body {
+  @apply bg-slate1 text-slate12;
 }
 
 ::selection {
