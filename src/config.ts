@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Guestbook",
-  description: "Full stack web application built with T3 stack.",
+  description: "Full stack web application built with everything new.",
   url: "https://guestbook.sameerjadav.me",
   ogImage: "https://og.sameerjadav.me/og?title=Guestbook",
   author: "Sameer Jadav",
