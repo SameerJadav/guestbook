@@ -1,6 +1,4 @@
-import { Suspense } from "react"
 import { fetchPosts } from "~/server/posts"
-import { Skeleton } from "~/components/ui/skeleton"
 import Heading from "~/components/Heading"
 import Nav from "~/components/Nav"
 import PostWizard from "~/components/PostWizard"
@@ -13,17 +11,12 @@ export default async function Home() {
       <PostWizard />
       <div className="mt-6 space-y-2">
         {data.map((data) => (
-          <Suspense
-            key={data.post.id}
-            fallback={<Skeleton className="w-full h-6" />}
-          >
-            <p>
-              <span className="text-slate11">
-                {data.author?.firstName} {data.author?.lastName}:
-              </span>{" "}
-              {data.post.content}
-            </p>
-          </Suspense>
+          <p key={data.post.id}>
+            <span className="text-slate11">
+              {data.author?.firstName} {data.author?.lastName}:
+            </span>{" "}
+            {data.post.content}
+          </p>
         ))}
       </div>
       <Nav />
