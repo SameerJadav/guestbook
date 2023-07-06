@@ -6,6 +6,11 @@ on:
   push:
     branches: ["*"]
 
+env:
+  DATABASE_URL: "https://fake.com"
+  CLERK_SECRET_KEY: "fake"
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "fake"
+
 jobs:
   typecheck-lint:
     runs-on: ubuntu-latest
