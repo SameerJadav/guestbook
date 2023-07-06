@@ -19,6 +19,7 @@ const config = {
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "^~/lib/(.*)$",
+    "^~/server/(.*)$",
     "^~/components/ui/(.*)$",
     "^~/components/(.*)$",
     "^~/app/(.*)$",

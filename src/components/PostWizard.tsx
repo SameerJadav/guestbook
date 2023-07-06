@@ -10,7 +10,7 @@ export default function PostWizard() {
   const { isSignedIn } = useUser()
 
   return (
-    <>
+    <div className="mt-6 border-b border-slate6 pb-6">
       {!isSignedIn && (
         <Link
           href="/sign-in"
@@ -35,9 +35,9 @@ export default function PostWizard() {
             className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
             placeholder="Your message..."
           />
-          <Button size="sm">Post</Button>
+          <Button size="sm">Sign</Button>
         </div>
       )}
-    </>
+    </div>
   )
 }

@@ -40,3 +40,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# personal notes
+# i have a folder called notes where i keep track of the things i learn and some code snippets
+# that i might need in the future.
+/notes

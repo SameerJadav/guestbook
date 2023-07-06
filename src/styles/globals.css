@@ -28,6 +28,17 @@ body {
   @apply bg-slate1 text-slate12;
 }
 
+/* Changes the color of selected text */
 ::selection {
   @apply bg-slate5;
+}
+
+/* Removes scrollbar */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
