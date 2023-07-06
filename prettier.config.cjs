@@ -1,33 +1,31 @@
-/** @type {import('prettier').Config} */
-module.exports = {
-  endOfLine: "lf",
-  semi: false,
-  singleQuote: false,
+/** @typedef  {import("@trivago/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig*/
+/** @typedef  {import("prettier").Config} PrettierConfig*/
+
+/** @type { PrettierConfig | SortImportsConfig } */
+const config = {
   tabWidth: 2,
-  trailingComma: "es5",
+  semi: false,
+  arrowParens: "always",
+  trailingComma: "all",
+  singleQuote: false,
+  jsxSingleQuote: false,
+  plugins: [
+    require.resolve("prettier-plugin-tailwindcss"),
+    "@trivago/prettier-plugin-sort-imports",
+  ],
+  // plugin's options
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
-    "^types$",
-    "^~/types/(.*)$",
-    "^~/config/(.*)$",
     "^~/lib/(.*)$",
-    "^~/hooks/(.*)$",
     "^~/components/ui/(.*)$",
     "^~/components/(.*)$",
-    "^~/styles/(.*)$",
     "^~/app/(.*)$",
+    "^~/styles/(.*)$",
     "^[./]",
   ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
-  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true,
-  plugins: [
-    require.resolve("@trivago/prettier-plugin-sort-imports"),
-    require.resolve("prettier-plugin-tailwindcss"),
-  ],
+  importOrderCaseInsensitive: true,
 }
+
+module.exports = config

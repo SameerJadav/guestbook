@@ -18,7 +18,3 @@ Simple and user-friendly guestbook application. This project was inspired by [Le
 ### Connect with me
 
 [Twitter](https://www.twitter.com/SameerJadav_) | [Website](https://sameerjadav.me) | [LinkedIn](https://www.linkedin.com/in/sameer-jadav) | [Instagram](https://www.instagram.com/sameerjadav._) | [Mail](mailto:sameerjadav001@gmail.com)
-
-## License
-
-Licensed under the [MIT license](./LICENSE.md).

@@ -1,8 +1,0 @@
-{
-  "name": "Guestbook",
-  "short_name": "",
-  "description": "Full stack web application built with everthing new.",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
-}
