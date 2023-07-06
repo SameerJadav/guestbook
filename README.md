@@ -2,6 +2,8 @@
 
 Simple and user-friendly guestbook application. This project was inspired by [Lee Robinson's Guestbook](https://leerob.io/guestbook) app. I wanted to create a similar app using the new stuff.
 
+> **Warning** The app is still in development you can see the live demo [here](https://guestbook-git-appdir-sameerjadav.vercel.app).
+
 ## Features
 
 - Next.js `app` dir
