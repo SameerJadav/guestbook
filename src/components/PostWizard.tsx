@@ -18,7 +18,7 @@ export default function PostWizard() {
             buttonVariants({
               variant: "secondary",
             }),
-            "gap-2"
+            "gap-2",
           )}
         >
           <LogIn size={16} />

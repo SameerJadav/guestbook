@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { type Config } from "tailwindcss"
+
+export default {
   content: [
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -30,5 +31,8 @@ module.exports = {
       sm: "calc(var(--radius) - 4px)",
     },
   },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   plugins: [],
-}
+} satisfies Config

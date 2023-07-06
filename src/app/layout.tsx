@@ -3,7 +3,7 @@ import { Inter, Noto_Serif_Display } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { siteConfig } from "~/config"
 import { cn } from "~/lib/utils"
-import "./globals.css"
+import "~/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 export const noto = Noto_Serif_Display({ subsets: ["latin"] })
