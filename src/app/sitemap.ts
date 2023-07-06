@@ -1,6 +1,7 @@
+import { type MetadataRoute } from "next"
 import { siteConfig } from "~/config"
 
-export default async function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,

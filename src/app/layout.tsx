@@ -1,4 +1,4 @@
-import { Metadata } from "next"
+import { type Metadata } from "next"
 import { Inter, Noto_Serif_Display } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { siteConfig } from "~/config"

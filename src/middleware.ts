@@ -5,7 +5,7 @@ export default authMiddleware({
   // routes that don't require authentication
   publicRoutes: ["/", "/signin(.*)"],
 
-  async afterAuth(auth, req) {
+  afterAuth(auth) {
     if (auth.isPublicRoute) {
       //  For public routes, we don't need to do anything
       return NextResponse.next()
