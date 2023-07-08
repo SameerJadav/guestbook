@@ -52,14 +52,3 @@ export async function fetchPosts() {
     throw error
   }
 }
-
-export async function createPost() {
-  const post = await prisma.post.create({
-    data: {
-      content: "posting content from prisma",
-      authorId: "user_2NYBALH9IucJkHbRHwlwYAziVr0",
-    },
-  })
-
-  return post
-}

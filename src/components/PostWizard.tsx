@@ -1,25 +1,30 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-"use client"
-
 import Link from "next/link"
-import { useUser } from "@clerk/nextjs"
+import { auth, currentUser } from "@clerk/nextjs"
 import { LogIn } from "lucide-react"
 import { cn } from "~/lib/utils"
-import { createPost } from "~/server/posts"
+import { prisma } from "~/server/db"
 import { Button, buttonVariants } from "./ui/button"
 
-/* eslint-disable @typescript-eslint/no-misused-promises */
+export default async function PostWizard() {
+  const user = await currentUser()
 
-export default function PostWizard() {
-  const { isSignedIn } = useUser()
+  async function createPost() {
+    "use server"
 
-  const handleClick = async () => {
-    const newPost = await createPost()
+    const { userId: authorId } = auth()
+    const post = await prisma.post.create({
+      data: {
+        authorId,
+        content: "testing of appDir",
+      },
+    })
+
+    return post
   }
 
   return (
     <div className="mt-6 border-b border-slate6 pb-6">
-      {!isSignedIn && (
+      {!user && (
         <Link
           href="/sign-in"
           className={cn(
@@ -34,8 +39,12 @@ export default function PostWizard() {
         </Link>
       )}
 
-      {isSignedIn && (
-        <div className="flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4">
+      {user && (
+        <form
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          action={createPost}
+          className="flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4"
+        >
           <input
             type="text"
             name="message"
@@ -43,10 +52,8 @@ export default function PostWizard() {
             className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
             placeholder="Your message..."
           />
-          <Button size="sm" onClick={handleClick}>
-            Sign
-          </Button>
-        </div>
+          <Button size="sm">Sign</Button>
+        </form>
       )}
     </div>
   )
