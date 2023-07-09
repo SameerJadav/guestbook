@@ -17,6 +17,8 @@ const filterUserForClient = (user: User) => {
   }
 }
 
+export const revalidate = 0
+
 export async function GET() {
   const posts = await prisma.post.findMany({
     take: 100,
