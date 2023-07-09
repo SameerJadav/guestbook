@@ -1,12 +1,11 @@
 import { type Metadata } from "next"
-import { Inter, Noto_Serif_Display } from "next/font/google"
+import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { siteConfig } from "~/config"
 import { cn } from "~/lib/utils"
 import "~/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-export const noto = Noto_Serif_Display({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
@@ -74,7 +73,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={cn("antialiased", inter.className)}>
-          <main className="mx-auto w-full max-w-xl px-4 py-6 md:p-0">
+          <main className="mx-auto w-full max-w-xl px-4 md:p-0">
             {children}
           </main>
         </body>

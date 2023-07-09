@@ -7,13 +7,11 @@ const filterUserForClient = (user: User) => {
   return {
     id: user.id,
     firstName: user.firstName,
-    lastName: user.lastName,
   }
 }
 
 export async function fetchPosts() {
   try {
-    // Fetch posts
     const posts = await prisma.post.findMany({
       take: 100,
       orderBy: {
@@ -22,11 +20,11 @@ export async function fetchPosts() {
     })
 
     // Extract author IDs from the posts
-    const authorIds = posts.map((post) => post.authorId)
+    const authorId = posts.map((post) => post.authorId)
 
     // Fetch user data concurrently
     const usersPromise = clerkClient.users.getUserList({
-      userId: authorIds,
+      userId: authorId,
       limit: 100,
     })
 
@@ -39,6 +37,9 @@ export async function fetchPosts() {
     // Combine each post with its respective author
     const postsWithAuthors = posts.map((post) => {
       const author = authors.find((author) => author.id === post.authorId)
+
+      if (!author) throw new Error(`Author not found for post ${post.id}`)
+
       return {
         post,
         author,
