@@ -10,14 +10,22 @@ import { prisma } from "~/server/db"
  * Finally, it returns a JSON response containing the posts with their respective authors.
  */
 
+/**
+ * Before adding recalidate this page was fetching data at build time.
+ * This means that if a new post was added to the database, the page would not be updated until the next build.
+ * By adding revalidate, the page will be updated every 0 seconds(Atleast that's what I think it means)
+ * Read following docs for more info
+ * 1. https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+ * 2. https://nextjs.org/docs/app/building-your-application/data-fetching/caching#segment-level-caching
+ */
+export const revalidate = 0
+
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
     firstName: user.firstName,
   }
 }
-
-export const revalidate = 0
 
 export async function GET() {
   const posts = await prisma.post.findMany({
