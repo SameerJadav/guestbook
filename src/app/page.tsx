@@ -1,11 +1,10 @@
 import { currentUser } from "@clerk/nextjs"
-import { fetchPosts } from "~/server/post"
 import CreatePostWizard from "~/components/CreatePostWizard"
+import Feed from "~/components/Feed"
 import Footer from "~/components/Footer"
 import SignIn from "~/components/SignIn"
 
 export default async function Home() {
-  const entries = await fetchPosts()
   const user = await currentUser()
   return (
     <>
@@ -15,15 +14,7 @@ export default async function Home() {
           {user ? <CreatePostWizard /> : <SignIn />}
         </div>
       </div>
-
-      <div className="mt-6 space-y-2">
-        {entries.map((entry) => (
-          <p key={entry.post.id}>
-            <span className="text-slate11">{entry.author.firstName}:</span>{" "}
-            {entry.post.content}
-          </p>
-        ))}
-      </div>
+      <Feed />
       <Footer />
     </>
   )
