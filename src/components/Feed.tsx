@@ -31,12 +31,19 @@ export default function Feed() {
 
   if (isLoading) {
     return (
-      <div className="mt-6 space-y-2">
-        <p>loading...</p>
+      <div className="mt-6">
+        <p>Loading...</p>
       </div>
     )
   }
-  if (isError) return <div>Error</div>
+
+  if (isError) {
+    return (
+      <div className="mt-6">
+        <p>Error loading feed. Please try again later.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="mt-6 space-y-2">

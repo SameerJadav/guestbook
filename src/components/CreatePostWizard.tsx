@@ -1,39 +1,49 @@
-import { auth } from "@clerk/nextjs"
-import { prisma } from "~/server/db"
+"use client"
+
+import { useState } from "react"
+import { useMutation } from "@tanstack/react-query"
+import axios from "axios"
 import { Button } from "./ui/button"
 
 export default function CreatePostWizard() {
-  async function createPost() {
-    "use server"
+  const [content, setContent] = useState("")
 
-    const { userId } = auth()
-
-    if (!userId) throw new Error("User ID not found")
-
-    const post = await prisma.post.create({
-      data: {
-        authorId: userId,
-        content: "testing of appDir",
-      },
-    })
-
-    return post
-  }
+  const { mutate } = useMutation({
+    mutationFn: async () => {
+      return await axios.post("/api/post", { content: content })
+    },
+    onSuccess: () => {
+      setContent("")
+    },
+    retry: 3,
+  })
 
   return (
-    <form
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      action={createPost}
-      className="flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4"
-    >
+    <form className="flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4">
       <input
         type="text"
         name="message"
         id="message"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault()
+            if (content !== "") mutate()
+          }
+        }}
         className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
         placeholder="Your message..."
       />
-      <Button size="sm">Sign</Button>
+      <Button
+        size="sm"
+        onClick={(e) => {
+          e.preventDefault()
+          if (content !== "") mutate()
+        }}
+      >
+        Sign
+      </Button>
     </form>
   )
 }
