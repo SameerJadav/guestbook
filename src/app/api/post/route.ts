@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { clerkClient } from "@clerk/nextjs"
+import { auth, clerkClient } from "@clerk/nextjs"
 import { type User } from "@clerk/nextjs/dist/types/server"
 import { prisma } from "~/server/db"
 
@@ -61,4 +61,21 @@ export async function GET() {
   )
 
   return NextResponse.json(postsWithAuthors)
+}
+
+export async function POST(req: Request) {
+  const { userId: authorId } = auth()
+
+  if (!authorId) throw new Error("User ID not found")
+
+  const { content } = (await req.json()) as { content: string }
+
+  const post = await prisma.post.create({
+    data: {
+      authorId,
+      content,
+    },
+  })
+
+  return NextResponse.json(post)
 }
