@@ -22,6 +22,7 @@ interface PostWithAuthor {
 
 export default function Feed() {
   const { data, isError, isLoading } = useQuery({
+    queryKey: ["post"],
     queryFn: async () => {
       const res = await axios.get("/api/post")
       if (!res.data) throw new Error("No data")

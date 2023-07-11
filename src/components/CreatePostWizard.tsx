@@ -1,18 +1,21 @@
 "use client"
 
 import { useState } from "react"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { Button } from "./ui/button"
 
 export default function CreatePostWizard() {
   const [content, setContent] = useState("")
 
+  const queryClient = useQueryClient()
+
   const { mutate } = useMutation({
     mutationFn: async () => {
       return await axios.post("/api/post", { content: content })
     },
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["post"] })
       setContent("")
     },
     retry: 3,
