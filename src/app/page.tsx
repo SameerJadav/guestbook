@@ -8,11 +8,9 @@ export default async function Home() {
   const user = await currentUser()
   return (
     <>
-      <div className="sticky top-0 bg-slate1/90 backdrop-blur">
-        <h1 className="text-3xl font-bold pt-6">Sign my guestbook</h1>
-        <div className="mt-6 border-b border-slate6 pb-6">
-          {user ? <CreatePostWizard /> : <SignIn />}
-        </div>
+      <h1 className="text-3xl font-bold pt-6">Sign my guestbook</h1>
+      <div className="mt-4 border-b border-slate6 pb-4">
+        {user ? <CreatePostWizard /> : <SignIn />}
       </div>
       <Feed />
       <Footer />

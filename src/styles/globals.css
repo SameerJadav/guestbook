@@ -38,12 +38,17 @@ body {
   @apply bg-slate5;
 }
 
-/* Removes scrollbar */
-body::-webkit-scrollbar {
-  display: none;
+/* Scrollbar */
+.scrollbar::-webkit-scrollbar {
+  width: 0.375em;
+  background-color: transparent;
 }
 
-body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+.scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate3;
+  border-radius: 0.25em;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
 }

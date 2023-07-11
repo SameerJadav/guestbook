@@ -75,7 +75,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={cn("antialiased", inter.className)}>
           <Providers>
-            <main className="mx-auto w-full max-w-xl px-4 md:p-0">
+            <main className="mx-auto w-full max-w-xl max-h-screen flex flex-col px-4 md:p-0">
               {children}
             </main>
           </Providers>
