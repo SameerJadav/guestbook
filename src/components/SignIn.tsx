@@ -1,11 +1,13 @@
 "use client"
 
+import Link from "next/link"
 import { useSignIn } from "@clerk/nextjs"
+import { cn } from "~/lib/utils"
 import { Icons } from "./Icons"
-import { Button } from "./ui/button"
+import { Button, buttonVariants } from "./ui/button"
 
 export default function SignIn() {
-  const { signIn, isLoaded } = useSignIn()
+  /*   const { signIn, isLoaded } = useSignIn()
 
   if (!isLoaded) return null
 
@@ -26,5 +28,20 @@ export default function SignIn() {
       <Icons.google className="w-4 h-4" />
       <span>Sign in with Google</span>
     </Button>
+  ) */
+
+  return (
+    <Link
+      href="/sign-in"
+      className={cn(
+        buttonVariants({
+          variant: "secondary",
+        }),
+        "gap-2",
+      )}
+    >
+      {/* <LogIn size={16} /> */}
+      <span>Sign in with Google</span>
+    </Link>
   )
 }
