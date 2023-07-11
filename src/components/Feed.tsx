@@ -32,7 +32,7 @@ export default function Feed() {
 
   if (isLoading) {
     return (
-      <div className="mt-6">
+      <div className="mt-4">
         <p>Just a sec, summoning the memories...</p>
       </div>
     )
@@ -40,14 +40,14 @@ export default function Feed() {
 
   if (isError) {
     return (
-      <div className="mt-6">
+      <div className="mt-4">
         <p>Stories took a detour, we&apos;re on the lookout...</p>
       </div>
     )
   }
 
   return (
-    <div className="mt-6 space-y-2">
+    <div className="scrollbar | mt-4 space-y-2 flex-1 overflow-y-scroll">
       {data.map((entry) => (
         <p key={entry.post.id}>
           <span className="text-slate11">{entry.author.firstName}:</span>{" "}

@@ -1,21 +1,30 @@
-import Link from "next/link"
-import { LogIn } from "lucide-react"
-import { cn } from "~/lib/utils"
-import { buttonVariants } from "./ui/button"
+"use client"
+
+import { useSignIn } from "@clerk/nextjs"
+import { Icons } from "./Icons"
+import { Button } from "./ui/button"
 
 export default function SignIn() {
+  const { signIn, isLoaded } = useSignIn()
+
+  if (!isLoaded) return null
+
+  const signInWithGoogle = () =>
+    signIn.authenticateWithRedirect({
+      strategy: "oauth_google",
+      redirectUrl: "/",
+      redirectUrlComplete: "/",
+    })
+
   return (
-    <Link
-      href="/sign-in"
-      className={cn(
-        buttonVariants({
-          variant: "secondary",
-        }),
-        "gap-2",
-      )}
+    <Button
+      variant="secondary"
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      onClick={signInWithGoogle}
+      className="flex gap-2 items-center"
     >
-      <LogIn size={16} />
+      <Icons.google className="w-4 h-4" />
       <span>Sign in with Google</span>
-    </Link>
+    </Button>
   )
 }
