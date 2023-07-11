@@ -33,7 +33,7 @@ export default function Feed() {
   if (isLoading) {
     return (
       <div className="mt-6">
-        <p>Loading...</p>
+        <p>Just a sec, summoning the memories...</p>
       </div>
     )
   }
@@ -41,7 +41,7 @@ export default function Feed() {
   if (isError) {
     return (
       <div className="mt-6">
-        <p>Error loading feed. Please try again later.</p>
+        <p>Stories took a detour, we&apos;re on the lookout...</p>
       </div>
     )
   }

@@ -21,8 +21,13 @@ export default {
         slate11: "hsl(var(--slate11) / <alpha-value>)",
         slate12: "hsl(var(--slate12) / <alpha-value>)",
 
-        red9: "hsl(var(--red9) / <alpha-value>)",
-        red10: "hsl(var(--red10) / <alpha-value>)",
+        amber7: "hsl(var(--amber7) / <alpha-value>)",
+        amber8: "hsl(var(--amber8) / <alpha-value>)",
+        amber11: "hsl(var(--amber11) / <alpha-value>)",
+
+        red7: "hsl(var(--red7) / <alpha-value>)",
+        red8: "hsl(var(--red8) / <alpha-value>)",
+        red11: "hsl(var(--red11) / <alpha-value>)",
       },
     },
     borderRadius: {
