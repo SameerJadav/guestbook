@@ -13,11 +13,11 @@ export default function Header() {
         <CreatePostWizard />
       </div>
     )
+  } else {
+    return (
+      <div className="mt-4 border-b border-slate6 pb-4">
+        <SignIn />
+      </div>
+    )
   }
-
-  return (
-    <div className="mt-4 border-b border-slate6 pb-4">
-      <SignIn />
-    </div>
-  )
 }
