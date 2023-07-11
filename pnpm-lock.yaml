@@ -38,6 +38,9 @@ dependencies:
   tailwind-merge:
     specifier: ^1.13.2
     version: 1.13.2
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@trivago/prettier-plugin-sort-imports':

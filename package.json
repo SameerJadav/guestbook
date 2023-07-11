@@ -21,7 +21,8 @@
     "next": "^13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwind-merge": "^1.13.2"
+    "tailwind-merge": "^1.13.2",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
