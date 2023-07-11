@@ -2,7 +2,7 @@
 
 Simple and user-friendly guestbook application. This project was inspired by [Lee Robinson's Guestbook](https://leerob.io/guestbook) app. I wanted to create a similar app using the new stuff.
 
-Feel free to drop a message in [my guestbook](https://guestbook.sameerjadav.me)!If you come across any glitches or have any valuable suggestions, feel free to open an issue or a pull request. Alternatively, you can also reach out to me on [Twitter](https://www.twitter.com/SameerJadav_). If you like this project, please consider giving it a ⭐
+Feel free to drop a message in [my guestbook](https://guestbook.sameerjadav.me)! If you come across any glitches or have any valuable suggestions, feel free to open an issue or a pull request. Alternatively, you can also reach out to me on [Twitter](https://www.twitter.com/SameerJadav_). If you like this project, please consider giving it a ⭐
 
 ## Features
 
