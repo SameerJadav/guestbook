@@ -1,10 +1,8 @@
 "use client"
 
-import Link from "next/link"
-import { useSignIn } from "@clerk/nextjs"
-import { cn } from "~/lib/utils"
+import { SignInButton } from "@clerk/nextjs"
 import { Icons } from "./Icons"
-import { Button, buttonVariants } from "./ui/button"
+import { Button } from "./ui/button"
 
 export default function SignIn() {
   /*   const { signIn, isLoaded } = useSignIn()
@@ -31,17 +29,11 @@ export default function SignIn() {
   ) */
 
   return (
-    <Link
-      href="/sign-in"
-      className={cn(
-        buttonVariants({
-          variant: "secondary",
-        }),
-        "gap-2",
-      )}
-    >
-      {/* <LogIn size={16} /> */}
-      <span>Sign in with Google</span>
-    </Link>
+    <SignInButton mode="modal">
+      <Button variant="secondary" className="gap-2">
+        <Icons.google className="w-4 h-4" />
+        <span>Sign in with Google</span>
+      </Button>
+    </SignInButton>
   )
 }
