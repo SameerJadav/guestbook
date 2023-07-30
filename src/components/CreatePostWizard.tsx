@@ -60,15 +60,15 @@ export default function CreatePostWizard() {
         </Button>
       </form>
 
-      <div className="mt-2 flex justify-between items-center">
+      <div className="mt-2 flex items-center justify-between">
         <SignOutButton>
           <Button size="noPad" variant="link">
             Sign out
           </Button>
         </SignOutButton>
-        {isLoading && <p className="text-amber11 text-sm">Signing...</p>}
+        {isLoading && <p className="text-sm text-amber11">Signing...</p>}
         {isError && (
-          <p className="text-red11 text-sm">Ink Exhausted. Try again later.</p>
+          <p className="text-sm text-red11">Ink Exhausted. Try again later.</p>
         )}
       </div>
     </>

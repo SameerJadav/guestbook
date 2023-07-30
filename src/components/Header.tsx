@@ -10,7 +10,7 @@ export default async function Header() {
   const user = await currentUser()
 
   return (
-    <div className="mt-4 border-b border-slate6 pb-4 w-full">
+    <div className="mt-4 w-full border-b border-slate6 pb-4">
       {user ? <CreatePostWizard /> : <SignIn />}
     </div>
   )

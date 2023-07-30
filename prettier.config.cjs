@@ -9,24 +9,22 @@ const config = {
   trailingComma: "all",
   singleQuote: false,
   jsxSingleQuote: false,
-  plugins: [
-    require.resolve("prettier-plugin-tailwindcss"),
-    "@trivago/prettier-plugin-sort-imports",
-  ],
-  // plugin's options
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
+    "^~/config/(.*)$",
     "^~/lib/(.*)$",
-    "^~/server/(.*)$",
     "^~/components/ui/(.*)$",
     "^~/components/(.*)$",
     "^~/app/(.*)$",
     "^~/styles/(.*)$",
     "^[./]",
   ],
-  importOrderCaseInsensitive: true,
+  plugins: [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+  ],
 }
 
 module.exports = config

@@ -25,7 +25,7 @@ export default function SignIn() {
       variant="secondary"
       className="gap-2"
     >
-      <Icons.google className="w-4 h-4" />
+      <Icons.google className="h-4 w-4" />
       <span>Continue with Google</span>
     </Button>
   )

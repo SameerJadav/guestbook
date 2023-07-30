@@ -17,7 +17,7 @@ export default function SSOCallback(props: {
   }, [props.searchParams, handleRedirectCallback])
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center">
+    <div className="flex min-h-screen w-full items-center justify-center">
       <Icons.loader className="h-10 w-10 animate-spin" />
     </div>
   )
