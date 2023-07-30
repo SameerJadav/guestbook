@@ -1,4 +1,5 @@
 import { type Config } from "tailwindcss"
+import theme from "tailwindcss/defaultTheme"
 
 export default {
   content: [
@@ -28,6 +29,9 @@ export default {
         red7: "hsl(var(--red7) / <alpha-value>)",
         red8: "hsl(var(--red8) / <alpha-value>)",
         red11: "hsl(var(--red11) / <alpha-value>)",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", ...theme.fontFamily.sans],
       },
     },
     borderRadius: {

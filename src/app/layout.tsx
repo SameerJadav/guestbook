@@ -7,7 +7,11 @@ import { cn } from "~/lib/utils"
 import "~/styles/globals.css"
 import Providers from "./providers"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -74,7 +78,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn("antialiased", inter.className)}>
+        <body className={cn("antialiased", inter.variable)}>
           <Providers>
             <main className="mx-auto w-full max-w-xl max-h-screen flex flex-col px-4 md:p-0">
               {children}
