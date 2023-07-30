@@ -2,7 +2,7 @@ import { type Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
 import { Analytics } from "@vercel/analytics/react"
-import { siteConfig } from "~/config"
+import { SITE } from "~/config"
 import "~/styles/globals.css"
 import Providers from "./providers"
 
@@ -12,13 +12,22 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+const title = SITE.name
+const description = SITE.description
+const url = SITE.url
+const image = SITE.image
+
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: title,
+    template: `%s - ${title}`,
   },
-  description: siteConfig.description,
+  description: description,
   keywords: [
+    "Sameer Jadav",
+    "Web Developer",
+    "Programming",
+    "Full-stack",
     "Next.js",
     "TypeScript",
     "Prisma",
@@ -27,46 +36,57 @@ export const metadata: Metadata = {
     "zod",
     "Guestbook",
     "Supabase",
+    "T3 Stack",
   ],
-  authors: [
+  authors: [{ name: SITE.author, url: SITE.authorUrl }],
+  creator: SITE.author,
+  icons: [
     {
-      name: siteConfig.author,
-      url: siteConfig.authorUrl,
+      rel: "icon",
+      url: "/favicon.ico",
     },
   ],
-  creator: siteConfig.author,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#161618" },
-    { media: "(prefers-color-scheme: dark)", color: "#161618" },
+    { media: "(prefers-color-scheme: light)", color: "#151718" },
+    { media: "(prefers-color-scheme: dark)", color: "#151718" },
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
+    url: url,
+    title: title,
+    description: description,
+    siteName: title,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: image,
         width: 1200,
         height: 630,
-        alt: siteConfig.name,
+        alt: title,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.twitterId,
-    site: siteConfig.twitterId,
+    title: title,
+    description: description,
+    images: [image],
+    creator: SITE.twitterId,
+    site: SITE.twitterId,
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
-  alternates: {
-    canonical: siteConfig.url,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  manifest: `${url}/site.webmanifest`,
+  alternates: { canonical: url },
 }
 
 export default function RootLayout({
