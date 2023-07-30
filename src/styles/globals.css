@@ -30,7 +30,7 @@
 }
 
 body {
-  @apply bg-slate1 text-slate12;
+  @apply bg-slate1 font-sans text-slate12 antialiased;
 }
 
 /* Changes the color of selected text */
