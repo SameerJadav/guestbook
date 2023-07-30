@@ -47,7 +47,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="scrollbar | mt-4 space-y-2 flex-1 overflow-y-scroll">
+    <div className="scrollbar | mt-4 space-y-2 flex-1 overflow-y-scroll scroll-smooth">
       {data.map((entry) => (
         <p key={entry.post.id}>
           <span className="text-slate11">{entry.author.firstName}:</span>{" "}
