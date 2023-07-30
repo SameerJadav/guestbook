@@ -1,23 +1,17 @@
-"use client"
+import dynamic from "next/dynamic"
+import { currentUser } from "@clerk/nextjs"
 
-import { useUser } from "@clerk/nextjs"
-import CreatePostWizard from "./CreatePostWizard"
-import SignIn from "./SignIn"
+const SignIn = dynamic(() => import("./SignIn"), { ssr: false })
+const CreatePostWizard = dynamic(() => import("./CreatePostWizard"), {
+  ssr: false,
+})
 
-export default function Header() {
-  const { user } = useUser()
+export default async function Header() {
+  const user = await currentUser()
 
-  if (user) {
-    return (
-      <div className="mt-4 border-b border-slate6 pb-4">
-        <CreatePostWizard />
-      </div>
-    )
-  } else {
-    return (
-      <div className="mt-4 border-b border-slate6 pb-4">
-        <SignIn />
-      </div>
-    )
-  }
+  return (
+    <div className="mt-4 border-b border-slate6 pb-4 w-full">
+      {user ? <CreatePostWizard /> : <SignIn />}
+    </div>
+  )
 }

@@ -32,7 +32,7 @@ export default function Feed() {
 
   if (isLoading) {
     return (
-      <div className="mt-4">
+      <div className="mt-4 w-full text-start">
         <p>Just a sec, summoning the memories...</p>
       </div>
     )
@@ -40,7 +40,7 @@ export default function Feed() {
 
   if (isError) {
     return (
-      <div className="mt-4">
+      <div className="mt-4 w-full text-start">
         <p>Stories took a detour, we&apos;re on the lookout...</p>
       </div>
     )

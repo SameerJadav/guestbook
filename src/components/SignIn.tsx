@@ -1,39 +1,32 @@
 "use client"
 
-import { SignInButton } from "@clerk/nextjs"
-import { Icons } from "./Icons"
-import { Button } from "./ui/button"
+import { useSignIn } from "@clerk/nextjs"
+import { type OAuthStrategy } from "@clerk/nextjs/dist/types/server"
+import { Button } from "~/components/ui/button"
+import { Icons } from "~/components/Icons"
 
 export default function SignIn() {
-  /*   const { signIn, isLoaded } = useSignIn()
+  const { signIn, isLoaded } = useSignIn()
 
   if (!isLoaded) return null
 
-  const signInWithGoogle = () =>
-    signIn.authenticateWithRedirect({
-      strategy: "oauth_google",
-      redirectUrl: "/",
+  const signInWith = (strategy: OAuthStrategy) => {
+    return signIn.authenticateWithRedirect({
+      strategy,
+      redirectUrl: "/sso-callback",
       redirectUrlComplete: "/",
     })
+  }
 
   return (
     <Button
-      variant="secondary"
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      onClick={signInWithGoogle}
-      className="flex gap-2 items-center"
+      onClick={() => signInWith("oauth_google")}
+      variant="secondary"
+      className="gap-2"
     >
       <Icons.google className="w-4 h-4" />
-      <span>Sign in with Google</span>
+      <span>Continue with Google</span>
     </Button>
-  ) */
-
-  return (
-    <SignInButton mode="modal">
-      <Button variant="secondary" className="gap-2">
-        <Icons.google className="w-4 h-4" />
-        <span>Sign in with Google</span>
-      </Button>
-    </SignInButton>
   )
 }
