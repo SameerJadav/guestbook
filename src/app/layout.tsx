@@ -1,6 +1,7 @@
 import { type Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
+import { Analytics } from "@vercel/analytics/react"
 import { siteConfig } from "~/config"
 import { cn } from "~/lib/utils"
 import "~/styles/globals.css"
@@ -79,6 +80,7 @@ export default function RootLayout({
               {children}
             </main>
           </Providers>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
