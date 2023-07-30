@@ -12,7 +12,7 @@ export default function CreatePostWizard() {
 
   const queryClient = useQueryClient()
 
-  const { mutate, isLoading, isError } = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: async () => {
       return await axios.post("/api/post", { content: content })
     },
@@ -28,8 +28,8 @@ export default function CreatePostWizard() {
       <form
         className={cn(
           "flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4",
-          isLoading && "border-amber7 hover:border-amber8",
-          isError && "border-red7 hover:border-red8",
+          status === "loading" && "border-amber7 hover:border-amber8",
+          status === "error" && "border-red7 hover:border-red8",
         )}
       >
         <input
@@ -44,7 +44,7 @@ export default function CreatePostWizard() {
               if (content !== "") mutate()
             }
           }}
-          disabled={isLoading}
+          disabled={status === "loading"}
           className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
           placeholder="Your message..."
         />
@@ -54,7 +54,7 @@ export default function CreatePostWizard() {
             e.preventDefault()
             if (content !== "") mutate()
           }}
-          disabled={isLoading}
+          disabled={status === "loading"}
         >
           Sign
         </Button>
@@ -66,8 +66,10 @@ export default function CreatePostWizard() {
             Sign out
           </Button>
         </SignOutButton>
-        {isLoading && <p className="text-sm text-amber11">Signing...</p>}
-        {isError && (
+        {status === "loading" && (
+          <p className="text-sm text-amber11">Signing...</p>
+        )}
+        {status === "error" && (
           <p className="text-sm text-red11">Ink Exhausted. Try again later.</p>
         )}
       </div>

@@ -1,59 +1,40 @@
 "use client"
 
+import { useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
+import { type PostWithAuthor } from "~/types/post"
+import Post from "~/components/Post"
+import { Error, Loading } from "~/components/States"
 
-interface Post {
-  id: string
-  createdAt: string
-  content: string
-  authorId: string
-}
-
-interface Author {
-  id: string
-  firstName: string
-}
-
-interface PostWithAuthor {
-  post: Post
-  author: Author
+async function fetchPosts() {
+  const res = await axios.get("/api/post")
+  if (!res.data) return []
+  return res.data as PostWithAuthor[]
 }
 
 export default function Feed() {
-  const { data, isError, isLoading } = useQuery({
+  const { data, status } = useQuery({
     queryKey: ["post"],
-    queryFn: async () => {
-      const res = await axios.get("/api/post")
-      if (!res.data) throw new Error("No data")
-      return res.data as PostWithAuthor[]
-    },
+    queryFn: fetchPosts,
   })
 
-  if (isLoading) {
-    return (
-      <div className="mt-4 w-full text-start">
-        <p>Just a sec, summoning the memories...</p>
-      </div>
-    )
+  const posts = useMemo(() => {
+    if (!data) return []
+    return data.map((entry) => <Post key={entry.post.id} {...entry} />)
+  }, [data])
+
+  if (status === "loading") {
+    return <Loading />
   }
 
-  if (isError) {
-    return (
-      <div className="mt-4 w-full text-start">
-        <p>Stories took a detour, we&apos;re on the lookout...</p>
-      </div>
-    )
+  if (status === "error") {
+    return <Error />
   }
 
   return (
     <div className="scrollbar | mt-4 flex-1 space-y-2 overflow-y-scroll scroll-smooth">
-      {data.map((entry) => (
-        <p key={entry.post.id}>
-          <span className="text-slate11">{entry.author.firstName}:</span>{" "}
-          {entry.post.content}
-        </p>
-      ))}
+      {posts}
     </div>
   )
 }
