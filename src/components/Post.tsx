@@ -1,9 +1,17 @@
-import type {  Author, Post } from "~/types/post";
+import React from "react"
+import { block } from "million/react"
+import type { Author, Post } from "~/types/post"
 
-export default function Post({ post, author }: { post: Post; author: Author }) {
+type PostProps = {
+  post: Post
+  author: Author
+}
+
+const RenderPost: React.FC<PostProps> = ({ post, author }) => {
   return (
     <p key={post.id}>
       <span className="text-slate11">{author.firstName}:</span> {post.content}
     </p>
   )
 }
+export const PostBlock = block(RenderPost)
