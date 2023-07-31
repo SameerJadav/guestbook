@@ -3,12 +3,9 @@
 import { useMemo } from "react"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
-import { For } from "million/react"
 import { type PostWithAuthor } from "~/types/post"
-import { PostBlock } from "~/components/Post"
+import Post from "~/components/Post"
 import { Error, Loading } from "~/components/States"
-
-// import Post from "~/components/Post"
 
 async function fetchPosts() {
   const res = await axios.get("/api/post")
@@ -24,11 +21,7 @@ export default function Feed() {
 
   const posts = useMemo(() => {
     if (!data) return []
-    return (
-      <For each={data}>
-        {({ post, author }) => <PostBlock post={post} author={author} />}
-      </For>
-    )
+    return data.map((entry) => <Post key={entry.post.id} {...entry} />)
   }, [data])
 
   if (status === "loading") {
@@ -40,7 +33,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="scrollbar | mt-4 flex w-full flex-1 flex-col gap-2 overflow-y-scroll scroll-smooth">
+    <div className="scrollbar | mt-4 w-full flex-1 space-y-2 overflow-y-scroll scroll-smooth">
       {posts}
     </div>
   )
