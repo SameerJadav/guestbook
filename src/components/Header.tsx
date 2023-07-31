@@ -4,11 +4,16 @@ import { Skeleton } from "~/components/ui/skeleton"
 
 const SignIn = dynamic(() => import("./SignIn"), {
   ssr: false,
-  loading: () => <Skeleton className="h-8 w-52" />,
+  loading: () => <Skeleton className="h-[38px] w-[202.641px]" />,
 })
 const CreatePostWizard = dynamic(() => import("./CreatePostWizard"), {
   ssr: false,
-  loading: () => <Skeleton className="h-20 w-full" />,
+  loading: () => (
+    <>
+      <Skeleton className="h-[46px] w-full" />
+      <Skeleton className="mt-2 h-5 w-[55.172px]" />
+    </>
+  ),
 })
 
 export default async function Header() {

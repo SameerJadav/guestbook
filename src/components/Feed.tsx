@@ -33,7 +33,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="scrollbar | mt-4 flex-1 space-y-2 overflow-y-scroll scroll-smooth">
+    <div className="scrollbar | mt-4 w-full flex-1 space-y-2 overflow-y-scroll scroll-smooth">
       {posts}
     </div>
   )

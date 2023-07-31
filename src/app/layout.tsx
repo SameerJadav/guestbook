@@ -99,7 +99,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.variable}>
           <Providers>
-            <main className="mx-auto flex max-h-screen w-full max-w-xl flex-col items-center justify-center px-4 md:p-0">
+            <main className="mx-auto flex max-h-screen min-h-screen w-full max-w-xl flex-col px-4 md:p-0">
               {children}
             </main>
           </Providers>
