@@ -6,6 +6,7 @@ const SignIn = dynamic(() => import("./SignIn"), {
   ssr: false,
   loading: () => <Skeleton className="h-[38px] w-[202.641px]" />,
 })
+
 const CreatePostWizard = dynamic(() => import("./CreatePostWizard"), {
   ssr: false,
   loading: () => (
@@ -20,8 +21,13 @@ export default async function Header() {
   const user = await currentUser()
 
   return (
-    <div className="mt-4 w-full border-b border-slate6 pb-4">
-      {user ? <CreatePostWizard /> : <SignIn />}
+    <div>
+      <h1 className="w-full pt-6 text-start text-3xl font-bold">
+        Sign my guestbook
+      </h1>
+      <div className="mt-4 w-full border-b border-slate6 pb-4">
+        {user ? <CreatePostWizard /> : <SignIn />}
+      </div>
     </div>
   )
 }

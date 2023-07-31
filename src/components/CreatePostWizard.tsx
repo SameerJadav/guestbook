@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useState } from "react"
+import { Suspense, useCallback, useState } from "react"
 import { SignOutButton } from "@clerk/nextjs"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
@@ -21,8 +21,25 @@ export default function CreatePostWizard() {
       await queryClient.invalidateQueries({ queryKey: ["post"] })
       setContent("")
     },
-    retry: 3,
   })
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        e.preventDefault()
+        if (content !== "") mutate()
+      }
+    },
+    [content, mutate],
+  )
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      if (content !== "") mutate()
+    },
+    [content, mutate],
+  )
 
   return (
     <>
@@ -40,25 +57,17 @@ export default function CreatePostWizard() {
             id="message"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault()
-                if (content !== "") mutate()
-              }
-            }}
+            onKeyDown={handleKeyDown}
             disabled={status === "loading"}
             className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
             placeholder="Your message..."
           />
           <Button
             size="sm"
-            onClick={(e) => {
-              e.preventDefault()
-              if (content !== "") mutate()
-            }}
+            onClick={handleClick}
             disabled={status === "loading"}
           >
-            Sign
+            {status === "loading" ? "Signing..." : "Sign"}
           </Button>
         </form>
       </Suspense>
