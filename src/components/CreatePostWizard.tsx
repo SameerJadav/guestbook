@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { cn } from "~/lib/utils"
 import { Skeleton } from "~/components/ui/skeleton"
+import { Icons } from "~/components/Icons"
 import { Button } from "./ui/button"
 
 export default function CreatePostWizard() {
@@ -67,7 +68,11 @@ export default function CreatePostWizard() {
             onClick={handleClick}
             disabled={status === "loading"}
           >
-            {status === "loading" ? "Signing..." : "Sign"}
+            {status === "loading" ? (
+              <Icons.loader className="h-4 w-4 animate-spin" />
+            ) : (
+              "Sign"
+            )}
           </Button>
         </form>
       </Suspense>

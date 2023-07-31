@@ -6,7 +6,7 @@
     "build": "prisma generate && next build",
     "dev": "prisma generate && next dev",
     "lint": "next lint",
-    "start": "next start",
+    "start": "next start --port 5000",
     "preview": "pnpm run build && pnpm run start",
     "postinstall": "prisma generate",
     "typecheck": "tsc --noEmit",

@@ -18,7 +18,6 @@ import { prisma } from "~/server/db"
  * 1. https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
  * 2. https://nextjs.org/docs/app/building-your-application/data-fetching/caching#segment-level-caching
  */
-export const revalidate = 0
 
 const filterUserForClient = (user: User) => {
   return {
