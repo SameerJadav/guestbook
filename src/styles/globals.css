@@ -2,41 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --slate1: 200 7% 8.8%;
-    --slate2: 195 7.1% 11%;
-    --slate3: 197 6.8% 13.6%;
-    --slate4: 198 6.6% 15.8%;
-    --slate5: 199 6.4% 17.9%;
-    --slate6: 201 6.2% 20.5%;
-    --slate7: 203 6% 24.3%;
-    --slate8: 207 5.6% 31.6%;
-    --slate9: 206 6% 43.9%;
-    --slate10: 206 5.2% 49.5%;
-    --slate11: 206 6% 63%;
-    --slate12: 210 6% 93%;
-
-    --amber7: 35 91% 21.6%;
-    --amber8: 36 100% 25.5%;
-    --amber11: 39 90% 49.8%;
-
-    --red7: 357 60.2% 31.8%;
-    --red8: 358 65% 40.4%;
-    --red11: 358 100% 69.5%;
-
-    --radius: 0.5rem;
-  }
-}
-
 body {
-  @apply bg-slate1 font-sans text-slate12 antialiased;
+  @apply bg-gray1 font-sans text-gray12 antialiased;
   text-rendering: optimizeLegibility;
 }
 
 /* Changes the color of selected text */
 ::selection {
-  @apply bg-slate5;
+  @apply bg-gray5;
 }
 
 /* Scrollbar */
@@ -46,7 +19,7 @@ body {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-slate3;
+  @apply bg-gray3;
   border-radius: 0.25em;
 }
 

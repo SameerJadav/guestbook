@@ -3,17 +3,17 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "~/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center text-sm rounded-md font-medium transition-all disabled:opacity-50 disabled:pointer-events-none",
+  "inline-flex items-center text-sm rounded-md font-medium transition-all ease-in disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        default: "bg-slate12 text-slate2 hover:text-slate1 hover:bg-slate11",
+        default: "bg-gray12 text-gray2 hover:text-gray1 hover:bg-gray11",
         destructive: "bg-red9 hover:bg-red10",
-        outline: "border border-slate7 hover:bg-slate4 hover:border-slate8",
+        outline: "border border-gray7 hover:bg-gray4 hover:border-gray8",
         secondary:
-          "bg-slate3 hover:bg-slate4 border border-slate7 hover:border-slate8",
-        ghost: "hover:bg-slate4",
-        link: "text-slate11 underline underline-offset-2 decoration-slate7 hover:text-slate12 hover:decoration-slate8",
+          "bg-gray3 hover:bg-gray4 border border-gray7 hover:border-gray8",
+        ghost: "hover:bg-gray4",
+        link: "text-gray11 underline underline-offset-2 decoration-gray7 hover:text-gray12 hover:decoration-gray8",
       },
       size: {
         default: "py-2 px-4",

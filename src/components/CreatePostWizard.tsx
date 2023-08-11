@@ -47,7 +47,7 @@ export default function CreatePostWizard() {
       <Suspense fallback={<Skeleton className="h-[46px] w-full" />}>
         <form
           className={cn(
-            "flex items-center gap-2 rounded-md border border-slate7 bg-slate3 p-2 transition-colors hover:border-slate8 hover:bg-slate4",
+            "border-gray7 bg-gray3 hover:border-gray8 hover:bg-gray4 flex items-center gap-2 rounded-md border p-2 transition-colors",
             status === "loading" && "border-amber7 hover:border-amber8",
             status === "error" && "border-red7 hover:border-red8",
           )}
@@ -60,7 +60,7 @@ export default function CreatePostWizard() {
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={status === "loading"}
-            className="flex-1 bg-transparent p-0 outline-none placeholder:text-slate11"
+            className="placeholder:text-gray11 flex-1 bg-transparent p-0 outline-none"
             placeholder="Your message..."
           />
           <Button

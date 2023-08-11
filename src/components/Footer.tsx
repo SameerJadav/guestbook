@@ -4,7 +4,7 @@ import ExternalLink from "./ExternalLink"
 
 export default function Footer() {
   return (
-    <footer className="mt-4 flex w-full items-center justify-between border-t border-slate6 py-4">
+    <footer className="border-gray6 mt-4 flex w-full items-center justify-between border-t py-4">
       <p>
         Built by{" "}
         <ExternalLink href={SITE.links.twitter}>Sameer Jadav</ExternalLink>.

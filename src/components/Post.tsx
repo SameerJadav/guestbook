@@ -9,7 +9,7 @@ type PostProps = {
 const RenderPost = ({ post, author }: PostProps) => {
   return (
     <p key={post.id}>
-      <span className="text-slate11">{author.firstName}:</span> {post.content}
+      <span className="text-gray11">{author.firstName}:</span> {post.content}
     </p>
   )
 }
