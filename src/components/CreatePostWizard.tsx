@@ -5,7 +5,7 @@ import { SignOutButton } from "@clerk/nextjs"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { cn } from "~/lib/utils"
-import { Skeleton } from "~/components/ui/skeleton"
+import Skeleton from "~/components/ui/skeleton"
 import { Icons } from "~/components/Icons"
 import { Button } from "./ui/button"
 
@@ -47,7 +47,7 @@ export default function CreatePostWizard() {
       <Suspense fallback={<Skeleton className="h-[46px] w-full" />}>
         <form
           className={cn(
-            "border-gray7 bg-gray3 hover:border-gray8 hover:bg-gray4 flex items-center gap-2 rounded-md border p-2 transition-colors",
+            "flex items-center gap-2 rounded-md border border-gray7 bg-gray3 p-2 transition-colors hover:border-gray8 hover:bg-gray4",
             status === "loading" && "border-amber7 hover:border-amber8",
             status === "error" && "border-red7 hover:border-red8",
           )}
@@ -60,7 +60,7 @@ export default function CreatePostWizard() {
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={status === "loading"}
-            className="placeholder:text-gray11 flex-1 bg-transparent p-0 outline-none"
+            className="flex-1 bg-transparent p-0 outline-none placeholder:text-gray11"
             placeholder="Your message..."
           />
           <Button

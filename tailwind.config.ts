@@ -17,6 +17,13 @@ export default {
       fontFamily: {
         sans: ["var(--font-inter)", ...theme.fontFamily.sans],
       },
+      keyframes: {
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+      },
     },
   },
   future: {

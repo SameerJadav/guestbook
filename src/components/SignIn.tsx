@@ -4,7 +4,7 @@ import { Suspense, useState } from "react"
 import { useSignIn } from "@clerk/nextjs"
 import { type OAuthStrategy } from "@clerk/nextjs/dist/types/server"
 import { Button } from "~/components/ui/button"
-import { Skeleton } from "~/components/ui/skeleton"
+import Skeleton from "~/components/ui/skeleton"
 import { Icons } from "~/components/Icons"
 
 export default function SignIn() {

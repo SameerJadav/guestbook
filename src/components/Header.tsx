@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import { currentUser } from "@clerk/nextjs"
-import { Skeleton } from "~/components/ui/skeleton"
+import Skeleton from "~/components/ui/skeleton"
 
 const SignIn = dynamic(() => import("./SignIn"), {
   ssr: false,
@@ -25,7 +25,7 @@ export default async function Header() {
       <h1 className="w-full pt-6 text-start text-3xl font-bold">
         Sign my guestbook
       </h1>
-      <div className="border-gray6 mt-4 w-full border-b pb-4">
+      <div className="mt-4 w-full border-b border-gray6 pb-4">
         {user ? <CreatePostWizard /> : <SignIn />}
       </div>
     </div>
