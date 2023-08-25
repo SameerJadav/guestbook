@@ -2,7 +2,7 @@ export const SITE = {
   name: "Guestbook",
   description: "A simple and user-friendly guestbook app.",
   url: "https://guestbook.sameerjadav.me",
-  image: "https://og.sameerjadav.me/og?title=Guestbook",
+  image: "https://guestbook.sameerjadav.me/og.png",
   author: "Sameer Jadav",
   authorUrl: "https://sameerjadav.me",
   twitterId: "@SameerJadav_",
