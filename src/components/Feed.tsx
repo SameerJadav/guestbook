@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { type PostWithAuthor } from "~/types/post"
@@ -14,6 +15,8 @@ async function fetchPosts() {
 }
 
 export default function Feed() {
+  const [ref] = useAutoAnimate()
+
   const { data, status } = useQuery({
     queryKey: ["post"],
     queryFn: fetchPosts,
@@ -21,8 +24,14 @@ export default function Feed() {
 
   const posts = useMemo(() => {
     if (!data) return []
-    return data.map((entry) => <Post key={entry.post.id} {...entry} />)
-  }, [data])
+    return (
+      <ul ref={ref} className="space-y-2">
+        {data.map((entry) => (
+          <Post key={entry.post.id} {...entry} />
+        ))}
+      </ul>
+    )
+  }, [data, ref])
 
   if (status === "loading") {
     return <Loading />
@@ -33,7 +42,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="scrollbar | mt-4 flex w-full flex-1 flex-col gap-2 overflow-y-scroll scroll-smooth">
+    <div className="scrollbar | mt-4 w-full flex-1 overflow-y-scroll scroll-smooth">
       {posts}
     </div>
   )
