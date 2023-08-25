@@ -1,6 +1,5 @@
 "use client"
 
-import { useMemo } from "react"
 import { useAutoAnimate } from "@formkit/auto-animate/react"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
@@ -22,17 +21,6 @@ export default function Feed() {
     queryFn: fetchPosts,
   })
 
-  const posts = useMemo(() => {
-    if (!data) return []
-    return (
-      <ul ref={ref} className="space-y-2">
-        {data.map((entry) => (
-          <Post key={entry.post.id} {...entry} />
-        ))}
-      </ul>
-    )
-  }, [data, ref])
-
   if (status === "loading") {
     return <Loading />
   }
@@ -43,7 +31,11 @@ export default function Feed() {
 
   return (
     <div className="scrollbar | mt-4 w-full flex-1 overflow-y-scroll scroll-smooth">
-      {posts}
+      <ul ref={ref} className="space-y-2">
+        {data.map((entry) => (
+          <Post key={entry.post.id} {...entry} />
+        ))}
+      </ul>
     </div>
   )
 }
