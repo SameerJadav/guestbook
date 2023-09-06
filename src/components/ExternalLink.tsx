@@ -14,7 +14,7 @@ export default function ExternalLink({
   return (
     <a
       className={cn(
-        "decoration-gray7 hover:text-gray11 hover:decoration-gray8 underline underline-offset-2 transition-colors",
+        "underline decoration-gray7 underline-offset-2 transition-colors duration-200 ease-in hover:decoration-gray8",
         className,
       )}
       target="_blank"

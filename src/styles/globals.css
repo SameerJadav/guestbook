@@ -13,16 +13,17 @@ body {
 }
 
 /* Scrollbar */
-.scrollbar::-webkit-scrollbar {
-  width: 0.375em;
-  background-color: transparent;
-}
+@media (min-width: 768px) {
+  .scrollbar::-webkit-scrollbar {
+    width: 0.375em;
+    background-color: transparent;
+  }
 
-.scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-gray3;
-  border-radius: 0.25em;
-}
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray3;
+  }
 
-.scrollbar::-webkit-scrollbar-track {
-  background-color: transparent;
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 }
