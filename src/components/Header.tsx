@@ -1,11 +1,11 @@
-import dynamic from "next/dynamic"
-import { currentUser } from "@clerk/nextjs"
-import Skeleton from "~/components/ui/skeleton"
+import dynamic from "next/dynamic";
+import { currentUser } from "@clerk/nextjs";
+import Skeleton from "~/components/ui/skeleton";
 
 const SignIn = dynamic(() => import("./SignIn"), {
   ssr: false,
   loading: () => <Skeleton className="h-[38px] w-[202.641px]" />,
-})
+});
 
 const CreatePostWizard = dynamic(() => import("./CreatePostWizard"), {
   ssr: false,
@@ -15,10 +15,10 @@ const CreatePostWizard = dynamic(() => import("./CreatePostWizard"), {
       <Skeleton className="mt-2 h-5 w-[55.172px]" />
     </>
   ),
-})
+});
 
 export default async function Header() {
-  const user = await currentUser()
+  const user = await currentUser();
 
   return (
     <div>
@@ -29,5 +29,5 @@ export default async function Header() {
         {user ? <CreatePostWizard /> : <SignIn />}
       </div>
     </div>
-  )
+  );
 }

@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import { Suspense, useState } from "react"
-import { SignOutButton } from "@clerk/nextjs"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
-import { cn } from "~/lib/utils"
-import Skeleton from "~/components/ui/skeleton"
-import { Icons } from "~/components/Icons"
-import { Button } from "./ui/button"
+import { Suspense, useState } from "react";
+import { SignOutButton } from "@clerk/nextjs";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { cn } from "~/lib/utils";
+import Skeleton from "~/components/ui/skeleton";
+import { Icons } from "~/components/Icons";
+import { Button } from "./ui/button";
 
 export default function CreatePostWizard() {
-  const [content, setContent] = useState("")
+  const [content, setContent] = useState("");
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const { mutate, status } = useMutation({
     mutationFn: async () => {
-      return await axios.post("/api/post", { content: content })
+      return await axios.post("/api/post", { content: content });
     },
     onSuccess: async () => {
-      await queryClient.refetchQueries({ queryKey: ["post"] })
-      setContent("")
+      await queryClient.refetchQueries({ queryKey: ["post"] });
+      setContent("");
     },
-  })
+  });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault()
-      if (content !== "") mutate()
+      e.preventDefault();
+      if (content !== "") mutate();
     }
-  }
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    if (content !== "") mutate()
-  }
+    e.preventDefault();
+    if (content !== "") mutate();
+  };
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function CreatePostWizard() {
         <form
           className={cn(
             "flex items-center gap-2 rounded-md border border-gray7 bg-gray3 p-2 transition-colors duration-200 ease-in hover:border-gray8",
-            status === "loading" && "border-amber7 hover:border-amber8",
+            status === "pending" && "border-amber7 hover:border-amber8",
             status === "error" && "border-red7 hover:border-red8",
           )}
         >
@@ -53,16 +53,16 @@ export default function CreatePostWizard() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={handleKeyDown}
-            disabled={status === "loading"}
+            disabled={status === "pending"}
             className="flex-1 bg-transparent p-0 outline-none placeholder:text-gray11"
             placeholder="Your message..."
           />
           <Button
             size="sm"
             onClick={handleClick}
-            disabled={status === "loading"}
+            disabled={status === "pending"}
           >
-            {status === "loading" ? (
+            {status === "pending" ? (
               <Icons.loader className="h-4 w-4 animate-spin" />
             ) : (
               "Sign"
@@ -79,7 +79,7 @@ export default function CreatePostWizard() {
             </Button>
           </SignOutButton>
         </Suspense>
-        {status === "loading" && (
+        {status === "pending" && (
           <p className="text-sm text-amber11">Signing...</p>
         )}
         {status === "error" && (
@@ -87,5 +87,5 @@ export default function CreatePostWizard() {
         )}
       </div>
     </>
-  )
+  );
 }

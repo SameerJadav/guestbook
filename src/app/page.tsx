@@ -1,6 +1,6 @@
-import Feed from "~/components/Feed"
-import Footer from "~/components/Footer"
-import Header from "~/components/Header"
+import Feed from "~/components/Feed";
+import Footer from "~/components/Footer";
+import Header from "~/components/Header";
 
 export default function Home() {
   return (
@@ -9,5 +9,5 @@ export default function Home() {
       <Feed />
       <Footer />
     </>
-  )
+  );
 }

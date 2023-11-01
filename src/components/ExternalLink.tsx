@@ -1,9 +1,9 @@
-import { cn } from "~/lib/utils"
+import { cn } from "~/lib/utils";
 
 interface ExternalLinkProps {
-  href: string
-  className?: string
-  children: React.ReactNode
+  href: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
 export default function ExternalLink({
@@ -23,5 +23,5 @@ export default function ExternalLink({
     >
       {children}
     </a>
-  )
+  );
 }

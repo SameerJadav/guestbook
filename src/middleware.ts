@@ -1,18 +1,9 @@
-import { NextResponse } from "next/server"
-import { authMiddleware } from "@clerk/nextjs"
+import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-  // routes that don't require authentication
-  publicRoutes: ["/", "/signin(.*)"],
-
-  afterAuth(auth) {
-    if (auth.isPublicRoute) {
-      //  For public routes, we don't need to do anything
-      return NextResponse.next()
-    }
-  },
-})
+  publicRoutes: ["/"],
+});
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)"],
-}
+};

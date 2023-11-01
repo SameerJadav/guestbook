@@ -4,7 +4,7 @@
  *
  * Example(unix system): SKIP_ENV_VALIDATION=1 pnpm run dev
  */
-await import("./src/env.mjs")
+await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -12,6 +12,6 @@ const config = {
   swcMinify: true,
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
-}
+};
 
-export default config
+export default config;

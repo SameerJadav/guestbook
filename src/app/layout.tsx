@@ -1,21 +1,21 @@
-import { type Metadata } from "next"
-import { Inter } from "next/font/google"
-import { ClerkProvider } from "@clerk/nextjs"
-import { Analytics } from "@vercel/analytics/react"
-import { SITE } from "~/config"
-import "~/styles/globals.css"
-import Providers from "./providers"
+import { type Metadata } from "next";
+import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react";
+import { SITE } from "~/config";
+import "~/styles/globals.css";
+import Providers from "./providers";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-})
+});
 
-const title = SITE.name
-const description = SITE.description
-const url = SITE.url
-const image = SITE.image
+const title = SITE.name;
+const description = SITE.description;
+const url = SITE.url;
+const image = SITE.image;
 
 export const metadata: Metadata = {
   title: {
@@ -87,12 +87,12 @@ export const metadata: Metadata = {
   },
   manifest: `${url}/site.webmanifest`,
   alternates: { canonical: url },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -107,5 +107,5 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

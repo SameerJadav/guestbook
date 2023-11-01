@@ -1,6 +1,6 @@
-import { amberDark, grayDark, redDark } from "@radix-ui/colors"
-import { type Config } from "tailwindcss"
-import theme from "tailwindcss/defaultTheme"
+import { amberDark, grayDark, redDark } from "@radix-ui/colors";
+import { type Config } from "tailwindcss";
+import theme from "tailwindcss/defaultTheme";
 
 export default {
   content: [
@@ -30,4 +30,4 @@ export default {
     hoverOnlyWhenSupported: true,
   },
   plugins: [],
-} satisfies Config
+} satisfies Config;

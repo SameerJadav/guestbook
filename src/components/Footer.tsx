@@ -1,6 +1,6 @@
-import { SITE } from "~/config"
-import { Icons } from "~/components/Icons"
-import ExternalLink from "./ExternalLink"
+import { SITE } from "~/config";
+import { Icons } from "~/components/Icons";
+import ExternalLink from "./ExternalLink";
 
 export default function Footer() {
   return (
@@ -20,5 +20,5 @@ export default function Footer() {
         </ExternalLink>
       </div>
     </footer>
-  )
+  );
 }

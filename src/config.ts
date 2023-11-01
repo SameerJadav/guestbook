@@ -11,4 +11,4 @@ export const SITE = {
     github: "https://github.com/SameerJadav/guestbook",
     mail: "mailto:sameerjdav001@gmail.com",
   },
-}
+};

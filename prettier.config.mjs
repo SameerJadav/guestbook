@@ -1,20 +1,17 @@
-/** @typedef  {import("@trivago/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig*/
 /** @typedef  {import("prettier").Config} PrettierConfig*/
+/** @typedef  {import('prettier-plugin-tailwindcss').PluginOptions} TailwindcssConfig*/
+/** @typedef  {import('@trivago/prettier-plugin-sort-imports').PluginConfig} SortImportConfig*/
 
-/** @type { PrettierConfig | SortImportsConfig } */
+/** @type {PrettierConfig | TailwindcssConfig | SortImportConfig} */
 const config = {
-  tabWidth: 2,
-  semi: false,
-  arrowParens: "always",
-  trailingComma: "all",
-  singleQuote: false,
-  jsxSingleQuote: false,
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "^~/config/(.*)$",
     "^~/lib/(.*)$",
+    "^~/server/(.*)$",
+    "^~/types/(.*)$",
     "^~/components/ui/(.*)$",
     "^~/components/(.*)$",
     "^~/app/(.*)$",
@@ -25,6 +22,6 @@ const config = {
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
   ],
-}
+};
 
-module.exports = config
+export default config;

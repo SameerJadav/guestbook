@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { Suspense, useState } from "react"
-import { useSignIn } from "@clerk/nextjs"
-import { type OAuthStrategy } from "@clerk/nextjs/dist/types/server"
-import { Button } from "~/components/ui/button"
-import Skeleton from "~/components/ui/skeleton"
-import { Icons } from "~/components/Icons"
+import { Suspense, useState } from "react";
+import { useSignIn } from "@clerk/nextjs";
+import { type OAuthStrategy } from "@clerk/nextjs/dist/types/server";
+import { Button } from "~/components/ui/button";
+import Skeleton from "~/components/ui/skeleton";
+import { Icons } from "~/components/Icons";
 
 export default function SignIn() {
-  const { signIn, isLoaded } = useSignIn()
-  const [isLoading, setIsLoading] = useState(false)
+  const { signIn, isLoaded } = useSignIn();
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!isLoaded) return null
+  if (!isLoaded) return null;
 
   const signInWith = async (strategy: OAuthStrategy) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       await signIn.authenticateWithRedirect({
         strategy,
         redirectUrl: "/sso-callback",
         redirectUrlComplete: "/",
-      })
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   return (
     <Suspense fallback={<Skeleton className="h-[38px] w-[202.641px]" />}>
@@ -49,5 +49,5 @@ export default function SignIn() {
         )}
       </Button>
     </Suspense>
-  )
+  );
 }
