@@ -1,4 +1,4 @@
-import { type Metadata } from "next";
+import { type Viewport, type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
@@ -18,14 +18,11 @@ const url = SITE.url;
 const image = SITE.image;
 
 export const metadata: Metadata = {
-  title: {
-    default: title,
-    template: `%s - ${title}`,
-  },
+  title: title,
   description: description,
   keywords: [
     "Sameer Jadav",
-    "Web Developer",
+    "Web Development",
     "Programming",
     "Full-stack",
     "Next.js",
@@ -33,27 +30,31 @@ export const metadata: Metadata = {
     "Prisma",
     "Tailwind CSS",
     "Clerk",
-    "zod",
     "Guestbook",
     "Supabase",
     "T3 Stack",
   ],
+  applicationName: title,
+  generator: "Next.js",
   authors: [{ name: SITE.author, url: SITE.authorUrl }],
   creator: SITE.author,
+  publisher: SITE.author,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: [
     {
       rel: "icon",
       url: "/favicon.ico",
     },
   ],
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#151718" },
-    { media: "(prefers-color-scheme: dark)", color: "#151718" },
-  ],
+  metadataBase: new URL(url),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: url,
+    url: "/",
     title: title,
     description: description,
     siteName: title,
@@ -85,8 +86,12 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  manifest: `${url}/site.webmanifest`,
-  alternates: { canonical: url },
+  alternates: { canonical: "/" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#111111",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
