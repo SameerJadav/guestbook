@@ -1,20 +1,15 @@
-/** @typedef  {import("prettier").Config} PrettierConfig*/
-/** @typedef  {import('prettier-plugin-tailwindcss').PluginOptions} TailwindcssConfig*/
-/** @typedef  {import('@trivago/prettier-plugin-sort-imports').PluginConfig} SortImportConfig*/
+/** @typedef  {import("prettier").Config} PrettierConfig */
+/** @typedef  {import("@trivago/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig */
 
-/** @type {PrettierConfig | TailwindcssConfig | SortImportConfig} */
+/** @type { PrettierConfig | SortImportsConfig } */
 const config = {
   importOrder: [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
-    "^~/config/(.*)$",
-    "^~/lib/(.*)$",
-    "^~/server/(.*)$",
-    "^~/types/(.*)$",
-    "^~/components/ui/(.*)$",
+    "^(~/utils/(.*)$)|^(~/utils)",
     "^~/components/(.*)$",
-    "^~/app/(.*)$",
+    "^~/config",
     "^~/styles/(.*)$",
     "^[./]",
   ],
