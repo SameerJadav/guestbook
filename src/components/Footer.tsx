@@ -3,7 +3,7 @@ import { site } from "~/config";
 
 export default function Footer() {
   return (
-    <footer className="flex w-full items-center justify-between border-t border-gray-6 py-4">
+    <footer className="flex items-center justify-between border-t border-gray-6 py-4">
       <p>
         Built by{" "}
         <a
