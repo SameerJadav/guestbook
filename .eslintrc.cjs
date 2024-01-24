@@ -30,6 +30,7 @@ const config = {
     "unicorn/filename-case": "off",
     "eslint-comments/require-description": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "react/button-has-type": "off",
     "import/no-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",

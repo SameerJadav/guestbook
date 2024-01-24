@@ -8,11 +8,11 @@ import { integer, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
  */
 const mysqliteTable = sqliteTableCreator((name) => `guestbook_${name}`);
 
-export const comments = mysqliteTable("posts", {
+export const posts = mysqliteTable("posts", {
   id: integer("id", { mode: "number" })
     .primaryKey({ autoIncrement: true })
     .notNull(),
-  username: text("username"),
+  authorName: text("author_name"),
   message: text("message").notNull(),
   createdAt: text("created_at")
     .default(sql`CURRENT_DATE`)
