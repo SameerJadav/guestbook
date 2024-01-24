@@ -28,6 +28,7 @@ const config = {
   ignorePatterns: ["node_modules/", "dist/"],
   rules: {
     "unicorn/filename-case": "off",
+    "eslint-comments/require-description": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/no-default-export": "off",
     "import/no-extraneous-dependencies": [
