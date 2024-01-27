@@ -1,4 +1,4 @@
-import { grayDark, blue } from "@radix-ui/colors";
+import { grayDark, blue, red, yellow } from "@radix-ui/colors";
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
@@ -37,6 +37,34 @@ const config: Config = {
           10: blue.blue10,
           11: blue.blue11,
           12: blue.blue12,
+        },
+        red: {
+          1: red.red1,
+          2: red.red2,
+          3: red.red3,
+          4: red.red4,
+          5: red.red5,
+          6: red.red6,
+          7: red.red7,
+          8: red.red8,
+          9: red.red9,
+          10: red.red10,
+          11: red.red11,
+          12: red.red12,
+        },
+        yellow: {
+          1: yellow.yellow1,
+          2: yellow.yellow2,
+          3: yellow.yellow3,
+          4: yellow.yellow4,
+          5: yellow.yellow5,
+          6: yellow.yellow6,
+          7: yellow.yellow7,
+          8: yellow.yellow8,
+          9: yellow.yellow9,
+          10: yellow.yellow10,
+          11: yellow.yellow11,
+          12: yellow.yellow12,
         },
       },
     },

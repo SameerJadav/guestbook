@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localfont from "next/font/local";
+import Providers from "~/app/providers";
 import "~/styles/globals.css";
 
 interface RootLayoutProps {
@@ -35,7 +36,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={geist.variable}>{children}</body>
+      <body className={geist.variable}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

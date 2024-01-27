@@ -9,7 +9,12 @@ const CreatePostWizard = dynamic(
   () => import("~/components/CreatePostWizard"),
   {
     ssr: false,
-    loading: () => <Skeleton className="h-[68px] w-full rounded-md" />,
+    loading: () => (
+      <div className="flex flex-col items-end gap-1">
+        <Skeleton className="h-11 w-full rounded-md" />
+        <Skeleton className="h-5 w-[61.42px] rounded-md" />
+      </div>
+    ),
   },
 );
 
@@ -26,7 +31,11 @@ export default async function HomePage() {
         <h1 className="pt-6 text-3xl font-bold tracking-tighter">
           Sign my guestbook
         </h1>
-        {session?.user ? <CreatePostWizard /> : <SigninButton />}
+        {session?.user ? (
+          <CreatePostWizard authorName={session.user.name} />
+        ) : (
+          <SigninButton />
+        )}
       </div>
       <div className="flex-1 space-y-1">
         <Suspense fallback={<p>Just a sec, summoning the memories...</p>}>
