@@ -1,91 +1,103 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { SignOutButton } from "@clerk/nextjs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { cn } from "~/lib/utils";
-import Skeleton from "~/components/ui/skeleton";
-import { Icons } from "~/components/Icons";
-import { Button } from "./ui/button";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { signOut } from "next-auth/react";
+import { cn } from "~/utils/cn";
+import type { EventFor } from "~/utils/react";
 
-export default function CreatePostWizard() {
-  const [content, setContent] = useState("");
+interface CreatePostWizardProps {
+  authorName: string | null | undefined;
+}
 
-  const queryClient = useQueryClient();
+export default function CreatePostWizard({
+  authorName,
+}: CreatePostWizardProps) {
+  const [message, setMessage] = useState("");
+  const router = useRouter();
 
-  const { mutate, status } = useMutation({
-    mutationFn: async () => {
-      return await axios.post("/api/post", { content: content });
-    },
-    onSuccess: async () => {
-      await queryClient.refetchQueries({ queryKey: ["post"] });
-      setContent("");
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () =>
+      fetch("/api/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          authorName,
+          message: message.trim(),
+        }),
+      }),
+    onSuccess: () => {
+      router.refresh();
+      setMessage("");
     },
   });
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (content !== "") mutate();
-    }
-  };
+  // eslint-disable-next-line no-console
+  if (error) console.error(error);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  function addMessage(e: EventFor<"button", "onClick">) {
     e.preventDefault();
-    if (content !== "") mutate();
-  };
+    if (message.trim() !== "") {
+      mutate();
+    }
+  }
+
+  function addMessageOnEnter(e: EventFor<"input", "onKeyDown">) {
+    if (e.ctrlKey && e.key === "Enter" && message.trim() !== "") {
+      e.preventDefault();
+      mutate();
+    }
+  }
 
   return (
-    <>
-      <Suspense fallback={<Skeleton className="h-[46px] w-full" />}>
-        <form
-          className={cn(
-            "flex items-center gap-2 rounded-md border border-gray7 bg-gray3 p-2 transition-colors duration-200 ease-in hover:border-gray8",
-            status === "pending" && "border-amber7 hover:border-amber8",
-            status === "error" && "border-red7 hover:border-red8",
-          )}
+    <div className="space-y-1">
+      <form className="flex w-full gap-2 rounded-md bg-gray-3 p-2">
+        <input
+          className="flex-1 bg-transparent placeholder-gray-11 outline-none"
+          disabled={isPending}
+          id="message-input"
+          name="message-input"
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+          onKeyDown={addMessageOnEnter}
+          placeholder="Your message..."
+          type="text"
+          value={message}
+        />
+        <button
+          className="rounded-md bg-gray-12 px-3 py-0.5 font-medium text-gray-1 transition-colors hover:bg-white disabled:bg-gray-11"
+          disabled={isPending || message.trim() === ""}
+          onClick={addMessage}
         >
-          <input
-            type="text"
-            name="message"
-            id="message"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={status === "pending"}
-            className="flex-1 bg-transparent p-0 outline-none placeholder:text-gray11"
-            placeholder="Your message..."
-          />
-          <Button
-            size="sm"
-            onClick={handleClick}
-            disabled={status === "pending"}
-          >
-            {status === "pending" ? (
-              <Icons.loader className="h-4 w-4 animate-spin" />
-            ) : (
-              "Sign"
-            )}
-          </Button>
-        </form>
-      </Suspense>
-
-      <div className="mt-2 flex items-center justify-between">
-        <Suspense fallback={<Skeleton className="h-5 w-[55.172px]" />}>
-          <SignOutButton>
-            <Button size="noPad" variant="link">
-              Sign out
-            </Button>
-          </SignOutButton>
-        </Suspense>
-        {status === "pending" && (
-          <p className="text-sm text-amber11">Signing...</p>
+          Post
+        </button>
+      </form>
+      <div
+        className={cn(
+          "flex w-full items-center justify-end",
+          error && "justify-between",
+          isPending && "justify-between",
         )}
-        {status === "error" && (
-          <p className="text-sm text-red11">Ink Exhausted. Try again later.</p>
-        )}
+      >
+        <p className={cn(error ? "inline text-sm text-red-9" : "hidden")}>
+          Something went wrong. Try again later.
+        </p>
+        <p
+          className={cn(isPending ? "inline text-sm text-yellow-9" : "hidden")}
+        >
+          Posting your message...
+        </p>
+        <button
+          className="mr-2 text-sm text-gray-11 transition-colors hover:text-gray-12"
+          onClick={() => void signOut()}
+        >
+          Sign out
+        </button>
       </div>
-    </>
+    </div>
   );
 }

@@ -2,28 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: dark;
+}
+
 body {
-  @apply bg-gray1 font-sans text-gray12 antialiased;
+  @apply bg-gray-1 font-sans text-gray-12 antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Changes the color of selected text */
-::selection {
-  @apply bg-gray5;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Scrollbar */
-@media (min-width: 768px) {
-  .scrollbar::-webkit-scrollbar {
-    width: 0.375em;
-    background-color: transparent;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-gray3;
-  }
-
-  .scrollbar::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-3;
 }

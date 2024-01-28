@@ -1,62 +1,24 @@
-import { NextResponse } from "next/server";
-import { auth, clerkClient } from "@clerk/nextjs";
-import { prisma } from "~/server/db";
+import { db } from "~/server/db";
+import { posts } from "~/server/db/schema";
 
-export async function GET() {
-  const postsPromise = prisma.post.findMany({
-    take: 100,
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
-  const usersPromise = clerkClient.users.getUserList({
-    userId: (await postsPromise).map((post) => post.authorId),
-    limit: 100,
-  });
-
-  const [postsResult, usersResult] = await Promise.allSettled([
-    postsPromise,
-    usersPromise,
-  ]);
-
-  const posts = postsResult.status === "fulfilled" ? postsResult.value : [];
-  const users = usersResult.status === "fulfilled" ? usersResult.value : [];
-
-  const authors = users.map((user) => {
-    return {
-      id: user.id,
-      firstName: user.firstName,
-    };
-  });
-
-  const postsWithAuthors = posts.map((post) => {
-    const author = authors.find((author) => author.id === post.authorId);
-
-    if (!author) throw new Error(`Author not found for post ${post.id}`);
-
-    return {
-      post,
-      author,
-    };
-  });
-
-  return NextResponse.json(postsWithAuthors);
+interface PostSchema {
+  authorName: string;
+  message: string;
 }
 
 export async function POST(req: Request) {
-  const { userId: authorId } = auth();
+  try {
+    const { authorName, message } = (await req.json()) as PostSchema;
 
-  if (!authorId) throw new Error("User ID not found");
+    const result = await db.insert(posts).values({
+      authorName,
+      message,
+    });
 
-  const { content } = (await req.json()) as { content: string };
-
-  const post = await prisma.post.create({
-    data: {
-      authorId,
-      content,
-    },
-  });
-
-  return NextResponse.json(post);
+    return Response.json(result);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    return Response.error();
+  }
 }
