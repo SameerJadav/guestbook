@@ -10,3 +10,11 @@ body {
   @apply bg-gray-1 font-sans text-gray-12 antialiased;
   text-rendering: optimizeLegibility;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-3;
+}

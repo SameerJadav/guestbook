@@ -37,7 +37,7 @@ export default async function HomePage() {
           <SigninButton />
         )}
       </div>
-      <div className="flex-1 space-y-1">
+      <div className="flex-1 space-y-1 overflow-y-scroll lg:overflow-y-hidden lg:hover:overflow-y-scroll">
         <Suspense fallback={<p>Just a sec, summoning the memories...</p>}>
           <Messages />
         </Suspense>
