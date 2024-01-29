@@ -4,6 +4,7 @@ import { posts } from "~/server/db/schema";
 
 export default async function Messages() {
   const messages = await db.query.posts.findMany({
+    limit: 100,
     orderBy: [desc(posts.createdAt)],
   });
   return messages.map(({ id, message, authorName }) => (

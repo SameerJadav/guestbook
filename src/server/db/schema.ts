@@ -15,6 +15,6 @@ export const posts = mysqliteTable("posts", {
   authorName: text("author_name"),
   message: text("message").notNull(),
   createdAt: text("created_at")
-    .default(sql`CURRENT_TIME`)
+    .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });
