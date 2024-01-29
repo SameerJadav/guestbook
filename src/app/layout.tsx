@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localfont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 import Providers from "~/app/providers";
 import { site } from "~/config";
 import "~/styles/globals.css";
@@ -122,6 +123,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={geist.variable}>
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
