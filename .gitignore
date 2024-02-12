@@ -36,4 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 # turso local database files
-dev.db*
+*.db*
+*.sql

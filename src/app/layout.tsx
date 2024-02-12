@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localfont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "~/app/providers";
+import { cn } from "~/utils/cn";
 import { site } from "~/config";
 import "~/styles/globals.css";
 
@@ -121,7 +122,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={geist.variable}>
+      <body
+        className={cn("font-sans text-gray-12 antialiased", geist.variable)}
+      >
         <Providers>{children}</Providers>
         <Analytics />
       </body>

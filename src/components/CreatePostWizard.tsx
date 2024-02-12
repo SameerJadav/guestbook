@@ -54,7 +54,7 @@ export default function CreatePostWizard({
 
   return (
     <div className="space-y-1">
-      <form className="flex w-full gap-2 rounded-md bg-gray-3 p-2">
+      <form className="flex w-full gap-2 rounded-md border border-gray-7 bg-gray-2 p-2">
         <input
           className="flex-1 bg-transparent placeholder-gray-11 outline-none"
           disabled={isPending}
@@ -69,7 +69,7 @@ export default function CreatePostWizard({
           value={message}
         />
         <button
-          className="rounded-md bg-gray-12 px-3 py-0.5 font-medium text-gray-1 transition-colors hover:bg-white disabled:bg-gray-11"
+          className="rounded-md bg-gray-12 px-3 py-0.5 font-medium text-gray-1 transition-colors ease-in hover:bg-white disabled:bg-gray-11"
           disabled={isPending || message.trim() === ""}
           onClick={addMessage}
         >
@@ -92,7 +92,7 @@ export default function CreatePostWizard({
           Posting your message...
         </p>
         <button
-          className="mr-2 text-sm text-gray-11 transition-colors hover:text-gray-12"
+          className="mr-2 text-sm text-gray-11 transition-colors ease-in hover:text-gray-12"
           onClick={() => void signOut()}
         >
           Sign out

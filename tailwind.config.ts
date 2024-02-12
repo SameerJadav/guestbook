@@ -1,4 +1,4 @@
-import { grayDark, blue, red, yellow } from "@radix-ui/colors";
+import { grayDark, blue, red, green, yellow } from "@radix-ui/colors";
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
@@ -66,6 +66,29 @@ const config: Config = {
           11: yellow.yellow11,
           12: yellow.yellow12,
         },
+        green: {
+          1: green.green1,
+          2: green.green2,
+          3: green.green3,
+          4: green.green4,
+          5: green.green5,
+          6: green.green6,
+          7: green.green7,
+          8: green.green8,
+          9: green.green9,
+          10: green.green10,
+          11: green.green11,
+          12: green.green12,
+        },
+      },
+      keyframes: {
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 150ms ease-in",
       },
     },
   },

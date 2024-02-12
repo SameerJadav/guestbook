@@ -4,17 +4,15 @@
 
 html {
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
-body {
-  @apply bg-gray-1 font-sans text-gray-12 antialiased;
-  text-rendering: optimizeLegibility;
-}
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-3;
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gray-3;
+  }
 }

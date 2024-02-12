@@ -13,6 +13,7 @@
   "dependencies": {
     "@libsql/client": "0.4.0-pre.7",
     "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@tanstack/react-query": "^5.17.19",
     "@vercel/analytics": "^1.1.2",
     "clsx": "^2.1.0",
