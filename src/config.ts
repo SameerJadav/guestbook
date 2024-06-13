@@ -5,7 +5,7 @@ export const site = {
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://guestbook.sameerjadav.me",
+      : "https://guestbook-sam.vercel.app",
   repo: "https://github.com/SameerJadav/guestbook",
   author: {
     name: "Sameer Jadav",
