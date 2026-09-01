@@ -1,6 +1,14 @@
-import { grayDark, blue, red, green, yellow } from "@radix-ui/colors";
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+
+// Loaded with `require` on purpose. Tailwind evaluates this TS config through
+// jiti, which hands back a proxy for ESM-style named imports; requiring
+// `tailwindcss/defaultTheme` afterwards invalidates jiti's module cache and
+// every color then reads as `undefined`, failing the build. A plain `require`
+// is not proxied, so it is immune to import order.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { grayDark, blue, red, green, yellow } =
+  require("@radix-ui/colors") as typeof import("@radix-ui/colors");
 
 const config: Config = {
   content: ["./src/**/*.tsx"],
