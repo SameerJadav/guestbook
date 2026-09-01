@@ -7,28 +7,23 @@ import { signOut } from "next-auth/react";
 import { cn } from "~/utils/cn";
 import type { EventFor } from "~/utils/react";
 
-interface CreatePostWizardProps {
-  authorName: string | null | undefined;
-}
-
-export default function CreatePostWizard({
-  authorName,
-}: CreatePostWizardProps) {
+export default function CreatePostWizard() {
   const [message, setMessage] = useState("");
   const router = useRouter();
 
   const { mutate, isPending, error } = useMutation({
-    mutationFn: () =>
-      fetch("/api/post", {
+    mutationFn: async () => {
+      const res = await fetch("/api/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          authorName,
-          message: message.trim(),
-        }),
-      }),
+        body: JSON.stringify({ message: message.trim() }),
+      });
+      if (!res.ok) {
+        throw new Error(`Failed to post message: ${res.status}`);
+      }
+    },
     onSuccess: () => {
       router.refresh();
       setMessage("");
@@ -59,6 +54,7 @@ export default function CreatePostWizard({
           className="flex-1 bg-transparent placeholder-gray-11 outline-none"
           disabled={isPending}
           id="message-input"
+          maxLength={500}
           name="message-input"
           onChange={(e) => {
             setMessage(e.target.value);

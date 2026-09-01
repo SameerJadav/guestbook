@@ -84,7 +84,7 @@ export default async function page() {
             <Menu />
           </div>
           {session?.user ? (
-            <CreatePostWizard authorName={session.user.name} />
+            <CreatePostWizard />
           ) : (
             <div>
               <SigninButton />
